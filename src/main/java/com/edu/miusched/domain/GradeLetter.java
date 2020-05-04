@@ -1,4 +1,4 @@
 package com.edu.miusched.domain;
 
-public class GradeLetter {
+public enum GradeLetter {
 }

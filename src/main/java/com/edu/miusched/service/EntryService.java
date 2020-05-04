@@ -1,4 +1,4 @@
-package com.edu.miusched.service.impl;
+package com.edu.miusched.service;
 
 public interface EntryService {
 }
