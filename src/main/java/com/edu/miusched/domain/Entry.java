@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 public class Entry {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO ,generator = "native")
     private Long id;
     @NotEmpty
     private String  entryName;
@@ -19,4 +19,5 @@ public class Entry {
     private int MPPNum;
     private Date StartDate;
     private Date EndDate;
+
 }
