@@ -19,7 +19,7 @@ public class Student {
     private String firstName;
     private String LastName;
     private String email;
-   /* @OneToOne
+    @ManyToOne
     @JoinColumn(name="entry_id", nullable=false)
-    private Entry entry;*/
+    private Entry entry;
 }
