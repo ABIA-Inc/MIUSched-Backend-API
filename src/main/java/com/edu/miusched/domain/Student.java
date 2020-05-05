@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 //@AllArgsConstructor
@@ -22,4 +25,7 @@ public class Student {
     @ManyToOne
     @JoinColumn(name="entry_id", nullable=false)
     private Entry entry;
+    private Entry entry;*/
+    @OneToMany
+    private List<Grade> grades = new ArrayList<>();
 }

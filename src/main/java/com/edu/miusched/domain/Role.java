@@ -5,9 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 public enum Role {
-
-    Admin,
-    Student,
-    Faculty
-
+    ADMIN,
+    FACULTY,
+    STUDENT
 }
