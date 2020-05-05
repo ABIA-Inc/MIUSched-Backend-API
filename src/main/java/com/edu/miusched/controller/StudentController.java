@@ -36,7 +36,7 @@ public class StudentController {
     @RequestMapping("/student/view/{id}")
     public String getProduct(@PathVariable Long id, Model model) {
 
-        model.addAttribute("student", studentService.getStudentByid(id));
+        model.addAttribute("student", studentService.getStudentById(id));
 
         return "display";
     }
@@ -51,14 +51,14 @@ public class StudentController {
 
     @RequestMapping("/students/delete/{id}")
     public String delete(@PathVariable Long id) {
-        studentService.deleteStudentyId(id);
+        studentService.deleteStudentById(id);
 
         return "redirect:/students";
     }
 
     @RequestMapping(value = "/student/edit/{id}",method = RequestMethod.GET)
     public String edit(@PathVariable Long id, ModelMap model){
-        model.addAttribute("student", studentService.getStudentByid(id));
+        model.addAttribute("student", studentService.getStudentById(id));
         return "edit";
     }
     @RequestMapping(value="/update",method=RequestMethod.POST)
