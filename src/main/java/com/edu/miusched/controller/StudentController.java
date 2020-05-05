@@ -28,7 +28,7 @@ public class StudentController {
     @RequestMapping(value = "/addnewstudent", method = RequestMethod.POST)
     public String registerStudent(@ModelAttribute("newstudent") Student student, Model model) {
         studentService.save(student);
-        model.addAttribute(studentService.getStudentByEmail(student.getEmail()));
+//        model.addAttribute(studentService.getStudentByEmail(student.getEmail()));
 
         return "addsuccess";
     }
