@@ -1,25 +1,29 @@
 package com.edu.miusched.domain;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Getter
-@Setter
 public class Section {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO ,generator = "native")
-    private Long Id;
-    private String Name;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+    @NotEmpty
+    private String sectionName;
     private LocalDate startDate;
     private LocalDate endDate;
-
-
+    private String classRoom;
+    private Integer capacity;
+    @OneToMany
+    private List<Grade> grades = new ArrayList<>();
 }
