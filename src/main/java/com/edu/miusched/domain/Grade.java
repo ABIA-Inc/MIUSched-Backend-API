@@ -16,7 +16,8 @@ public class Grade {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @NotEmpty
-    @OneToOne
+    private GradeLetter gradeLetter;
+    @ManyToOne
     private Student student;
     @ManyToOne
     private Section section;
