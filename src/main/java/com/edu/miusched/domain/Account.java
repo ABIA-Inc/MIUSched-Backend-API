@@ -1,26 +1,23 @@
 package com.edu.miusched.domain;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Getter
-@Setter
 public class Account {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     Long Id;
     @NonNull
     private String username;
     @NonNull
     private String password;
 
-    @Enumerated(EnumType.ORDINAL)
+    //@Enumerated(EnumType.ORDINAL)
     private Role role;
 }
