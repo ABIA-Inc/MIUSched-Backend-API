@@ -21,7 +21,6 @@ public class Course {
     private String courseCode;
     private String courseTitle;
     private int credits;
-    @OneToMany//(cascade = CascadeType.PERSIST, mappedBy = "course")
-//    @JoinColumn()
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Course> prerequisites = new ArrayList<>();
 }

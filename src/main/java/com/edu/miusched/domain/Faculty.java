@@ -31,8 +31,8 @@ public class Faculty {
     private Schedule schedule;
     @OneToOne
     private Account account;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Course> coursePreference = new ArrayList<>();
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Block> blockPreference = new ArrayList<>();
 }

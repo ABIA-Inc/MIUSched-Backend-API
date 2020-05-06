@@ -25,6 +25,6 @@ public class Student {
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name="entryID", nullable = false)
     private Entry entry;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
     private List<Grade> grades = new ArrayList<>();
 }
