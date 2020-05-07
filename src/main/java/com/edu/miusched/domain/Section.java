@@ -16,6 +16,7 @@ import java.util.List;
 @Entity
 public class Section {
     @Id
+    @Column(name = "sectionid")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @NotEmpty
@@ -24,6 +25,10 @@ public class Section {
     private LocalDate endDate;
     private String classRoom;
     private Integer capacity;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "section")
     private List<Grade> grades = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "blockID")
+    private Block block;
 }

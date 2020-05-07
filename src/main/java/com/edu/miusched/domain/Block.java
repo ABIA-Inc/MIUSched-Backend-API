@@ -3,6 +3,7 @@ package com.edu.miusched.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,13 +17,22 @@ import java.util.List;
 public class Block {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "blockid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotEmpty
-    private String  blockName;
+    private String blockName;
     private int FPPNum;
     private int MPPNum;
-//    @OneToMany(cascade = CascadeType.MERGE)
-//    private List<Section>sections =new ArrayList<>();
+    // if two way does not work change by this one //
+    /*@OneToMany (cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "sectionid", referencedColumnName = "blockid")
+    private List<Section> sections;*/
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
+    private List<Section> sections = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "entryID", nullable = false)
+    private Entry entry;
 
 }
