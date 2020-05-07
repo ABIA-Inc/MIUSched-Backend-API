@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>update entry</title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">MIUSched<span> - Demo</span></a>
+        </div>
+    </div>
+</nav>
+<div class="content" align="center">
+
+    <br />
+
+    <form action="#" th:action="@{/updateentry}"
+          th:object="${entry}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <fieldset>
+            <legend> Update Student Info </legend>
+            <table style="color: black" class="spacing-table">
+                <tr>
+                    <td>Entry Name:</td>
+                    <td><input type="text" th:field="*{entryName}" /></td>
+                </tr>
+                <tr>
+                    <td>Fpp Name:</td>
+                    <td><input type="text" th:field="*{FPPNum}" /></td>
+                </tr>
+                <tr>
+                    <td>MPP Address:</td>
+                    <td><input type="text" th:field="*{MPPNum}" /></td>
+                </tr>
+                <tr>
+                    <td>startDate:</td>
+                    <td><input type="text" th:field="*{startDate}" /></td>
+                </tr>
+                <tr>
+                    <td>EndDate:</td>
+                    <td><input type="text" th:field="*{endDate}" /></td>
+                </tr>
+
+
+
+
+            </table>
+            <div class="reg-form-actual">
+                <p>
+                    <input id="btnadd" type="submit" class="btn btn-default"
+                           value="Update" />
+                </p>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
