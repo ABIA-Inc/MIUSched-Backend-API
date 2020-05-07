@@ -8,7 +8,6 @@ public class StudentLoginController {
 
     @GetMapping("student/login")
     String login() {
-
         return "student_login";
     }
 }

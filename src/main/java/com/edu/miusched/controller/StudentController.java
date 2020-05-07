@@ -41,12 +41,12 @@ public class StudentController {
         return "display";
     }
 
-    @RequestMapping("/students")
+    @RequestMapping("/adminPage")
     public String listProducts(Model model) {
 
         model.addAttribute("students", studentService.getAllStudents());
 
-        return "studentlist";
+        return "Admindashboard";
     }
 
     @RequestMapping("/students/delete/{id}")

@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountDao extends JpaRepository<Account , Long> {
+
+    Account findAccountByUsername(String username);
 }

@@ -22,9 +22,9 @@ public class Student {
     private String firstName;
     private String LastName;
     private String email;
-    @ManyToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name="entryID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name="entry_id", nullable=false)
     private Entry entry;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    @OneToMany
     private List<Grade> grades = new ArrayList<>();
 }

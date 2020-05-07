@@ -1,16 +1,14 @@
 package com.edu.miusched.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
+@Getter
+@Setter
 public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -20,4 +18,12 @@ public class Admin {
     private Address address;
     @OneToOne
     private Account account;
+
+    private int active;
+
+    public Admin(@NotEmpty Address address, Account account) {
+        this.address = address;
+        this.account = account;
+        this.active = 1;
+    }
 }
