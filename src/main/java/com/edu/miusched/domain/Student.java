@@ -25,7 +25,6 @@ public class Student {
     @ManyToOne
     @JoinColumn(name="entry_id", nullable=false)
     private Entry entry;
-    private Entry entry;*/
     @OneToMany
     private List<Grade> grades = new ArrayList<>();
 }
