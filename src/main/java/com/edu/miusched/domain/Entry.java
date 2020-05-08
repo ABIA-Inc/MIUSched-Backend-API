@@ -4,6 +4,7 @@ package com.edu.miusched.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Entry {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 
     private Long id;
+    @NonNull
     private String  entryName;
     private int FPPNum;
     private int MPPNum;
