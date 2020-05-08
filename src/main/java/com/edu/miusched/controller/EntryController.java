@@ -24,12 +24,14 @@ public class EntryController {
 
     @RequestMapping(value = {"/admin/entry"}, method = RequestMethod.GET)
     public String getForm(@ModelAttribute("newEntry") Entry entry, Model model) {
+        Entry  entry1 = new Entry();
         List<Entry> entries = new ArrayList<Entry>();
         entries.addAll(entryService.getAllEntries());
         System.out.println(entries);
         model.addAttribute("entries", entries);
         model.addAttribute("newEntry", entry);
-        return "entryAddForm";
+        model.addAttribute("entry1",entry1);
+        return "Admin/ManageEntry";
     }
 
     @RequestMapping(value = {"/addnewentry"}, method = RequestMethod.POST)
@@ -37,9 +39,10 @@ public class EntryController {
         if (result.hasErrors()) {
             return "entryAddForm";
         } else {
+            System.out.println(entryObj.getEntryName());
             entryObj.setEntryName(entryObj.getEntryType().name()+entryObj.getStartDate().getYear());
             entryService.save(entryObj);
-            return "redirect:/admin/entries";
+            return "redirect:/admin/entry";
         }
     }
 
@@ -48,27 +51,29 @@ public class EntryController {
 
         model.addAttribute("entries", entryService.getAllEntries());
 
-        return "entrylist";
+        return "Admin/ManageEntry";
     }
 
-    @RequestMapping("/admin/entries/delete/{id}")
+    @RequestMapping("/admin/entry/delete/{id}")
     public String delete(@PathVariable Long id) {
         entryService.deleteEntry(id);
-        return "redirect:/admin/entries";
+        return "redirect:/admin/entry";
     }
 
     @RequestMapping(value = "/admin/entry/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Long id, ModelMap model) {
+        Entry entry = new Entry();
         model.addAttribute("entry", entryService.findByEntryId(id));
-        return "editentry";
+        return "Admin/ManageEntry";
     }
 
     @RequestMapping(value = "/updateentry", method = RequestMethod.POST)
     public String saveUpdate(@ModelAttribute("entry") Entry entryupdate, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
-            return "editentry";
+            return "Admin/ManageEntry";
         }
+        System.out.println( "id : " +entryupdate.getId());
         entryService.save(entryupdate);
-        return "redirect:/admin/entries";
+        return "redirect:/admin/entry";
     }
 }
