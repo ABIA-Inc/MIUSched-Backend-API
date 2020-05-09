@@ -31,7 +31,7 @@ public class Sectionimpl implements SectionService {
 
     @Override
     public void deleteSectionById(Long id) {
-        sectionDao.deleteSectionById(id);
+        sectionDao.deleteById(id);
     }
 
     @Override

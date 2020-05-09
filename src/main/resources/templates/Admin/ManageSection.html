@@ -10,7 +10,7 @@ Coded by Creative Tim
 =========================================================
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8"/>
@@ -28,13 +28,14 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- CSS Files -->
     <link href="/css/bootstrap.css" rel="stylesheet"/>
     <link href=" /css/material-dashboard.min.css?v=2.1.2" rel="stylesheet"/>
+
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="/css/demo.css" rel="stylesheet"/>
 </head>
 
 <body class="">
 <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
         <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -63,24 +64,6 @@ The above copyright notice and this permission notice shall be included in all c
                         <p>Entry</p>
                     </a>
                 </li>
-                <!--          <li class="nav-item ">-->
-                <!--            <a class="nav-link" href="./typography.html">-->
-                <!--              <i class="material-icons">library_books</i>-->
-                <!--              <p>Typography</p>-->
-                <!--            </a>-->
-                <!--          </li>-->
-                <!--          <li class="nav-item ">-->
-                <!--            <a class="nav-link" href="./icons.html">-->
-                <!--              <i class="material-icons">bubble_chart</i>-->
-                <!--              <p>Icons</p>-->
-                <!--            </a>-->
-                <!--          </li>-->
-                <!--          <li class="nav-item ">-->
-                <!--            <a class="nav-link" href="./map.html">-->
-                <!--              <i class="material-icons">location_ons</i>-->
-                <!--              <p>Maps</p>-->
-                <!--            </a>-->
-                <!--          </li>-->
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/block">
                         <i class="material-icons">Manage Block</i>
@@ -111,7 +94,7 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="content">
             <div class="container-fluid">
                 <div class=" col-4 ml-5"><h2 class="green-text">Create Section</h2>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicExampleModal">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalcreate">
                         Create Section
                     </button>
                 </div>
@@ -124,23 +107,40 @@ The above copyright notice and this permission notice shall be included in all c
                                 <p class="card-category "></p>
                             </div>
                             <div class="card-body table-responsive">
-                                <table class="table table-hover">
-                                    <thead class="text-warning">
+                                <table id="dtBasicExample" class="table table-hover">
+                                    <thead class="text-success">
                                     <th>Name</th>
                                     <th>Room</th>
                                     <th>StartDate</th>
                                     <th>EndDate</th>
                                     <th>Capacity</th>
                                     <th>Block</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th class="d-none"></th>
                                     </thead>
                                     <tbody>
-                                    <tr >
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>$36,738</td>
-                                        <td>Niger</td>
-                                        <td>$36,738</td>
-                                        <td>Niger</td>
+
+                                    <tr th:each="section : ${sections}">
+<!--                                        private String sectionName;-->
+<!--                                        private LocalDate startDate;-->
+<!--                                        private LocalDate endDate;-->
+<!--                                        private String classRoom;-->
+<!--                                        private Integer capacity;-->
+                                        <!--/*@thymesVar id="sectionName" type="java"*/-->
+                                        <td class="secid d-none"  th:text="${section.id}"></td>
+                                        <td th:text="${section.sectionName}" class="secname">1</td>
+                                        <td th:text="${section.classRoom}" class="secroom"></td>
+                                        <td th:text="${section.startDate}" class="secstrt">Dakota Rice</td>
+                                        <td th:text="${section.endDate}" class="secend">Dakota Rice</td>
+
+                                        <td th:text="${section.capacity}" class="capac"></td>
+                                        <td th:text="${section.block.blockName}" class="block"> </td>
+<!--                                        <td><button type="button" data-toggle="modal" data-target="#basicExampleModalview" class="btn btn-success">view</button></td>-->
+                                        <td><button type="button" data-toggle="modal" data-target="#basicExampleModal" class="btn btn-default">edit</button></td>
+                                        <td><a class="btn btn-danger " th:href="@{/admin/section/delete/{id}(id=${section.id})}"  onclick="return confirm('Are you sure?')">delete</a></td>
                                     </tr>
 
                                     </tbody>
@@ -191,33 +191,82 @@ The above copyright notice and this permission notice shall be included in all c
 </div>
 </div>
 
-<!--Modlas-->
+<!--Modla create-->
 
+<div class="modal fade" id="modalcreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleMel">Add new Section</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="text-center" style="color: #757575;" th:action="@{/admin/createSection}" th:object="${section}" method="Post">'
+                <div class="modal-body">
+<!--                    private String sectionName;&ndash;&gt;-->
+                    <!--                                        private LocalDate startDate;-->
+                    <!--                                        private LocalDate endDate;-->
+                    <!--                                        private String classRoom;-->
+                    <!--                                        private Integer capacity;-->
 
-<!-- Modal -->
+                    <!--                    secroom secstrt secend capac-->
+                    <input type="text" th:field="*{sectionName}" id="materialSubscriptionFormPassw" class="form-control mb-4 secname" placeholder="Title" onkeypress="return isNumber(event)">
+                    <input type="text" th:field="*{classRoom}" id="materialSube" class="form-control mb-4 secroom" placeholder="Room">
+                    <input type="date" th:field="*{startDate}" id="materialSubscrd" class="form-control mb-4 secstrt" placeholder="Start date">
+                    <input type="date" th:field="*{endDate}" id="materialSubscdl" class="form-control mb-4 secend" placeholder="end date">
+                    <input type="number" th:field="*{capacity}" max="30" min="2" id="materialSubmroom" class="form-control mb-4 capac" placeholder="Capacity">
+
+                    <select name="block" class="browser-default custom-select mb-4">
+                        <option value="" disabled selected> Choose Block</option>
+                        <option th:each="block :${blocks}"
+                                th:text="${block.blockName}"
+                                th:value="${block.id}" >Feedback</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--modale end-->
+<!-- Modal  edit-->
 <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add new Section</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit section</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="text-center" style="color: #757575;" action="#!">
+            <form class="text-center" th:action="@{/admin/Updatesection}" method="post" th:object="${section}" style="color: #757575;" action="">
                 <div class="modal-body">
+<!--                    private String sectionName;-->
+<!--                    private LocalDate startDate;-->
+<!--                    private LocalDate endDate;-->
+<!--                    private String classRoom;-->
+<!--                    private Integer capacity;-->
+<!--                    -->
+                    <input type="hidden" class="secid" th:field="*{id}">
+<!--                    secroom secstrt secend capac-->
+        <input type="text" th:field="*{sectionName}" id="materialSubscriptionFormPasswords" class="form-control mb-4 secname" placeholder="Title" onkeypress="return isNumber(event)">
+        <input type="text" th:field="*{classRoom}" id="materialSubscriptionFormEmaile" class="form-control mb-4 secroom" placeholder="Room">
+        <input type="date" th:field="*{startDate}" id="materialSubscriptionFormEmaild" class="form-control mb-4 secstrt" placeholder="Start date">
+        <input type="date" th:field="*{endDate}" id="materialSubscriptionFormEmaidl" class="form-control mb-4 secend" placeholder="end date">
+        <input type="number" th:field="*{capacity}" max="30" min="2" id="materialSubscriptionFormroom" class="form-control mb-4 capac" placeholder="Capacity">
 
-
-        <input type="text" id="materialSubscriptionFormPasswords" class="form-control mb-4" placeholder="Title">
-        <input type="text" id="materialSubscriptionFormEmaile" class="form-control mb-4" placeholder="Room">
-        <input type="date" id="materialSubscriptionFormEmaild" class="form-control mb-4" placeholder="StartDate">
-        <input type="date" id="materialSubscriptionFormEmaidl" class="form-control mb-4" placeholder="Name">
-        <input type="number" max="30" min="2" id="materialSubscriptionFormroom" class="form-control mb-4" placeholder="Capacity">
-
-                    <select class="browser-default custom-select mb-4">
+                    <select th:field="*{block}" class="browser-default custom-select mb-4 block">
                         <option value="" disabled selected> Choose Block</option>
-                        <option value="1" >Feedback</option>
+                        <option th:each="block :${blocks}"
+                                th:text="${block.blockName}"
+                                th:value="${block.id}" class="block">Feedback</option>
                     </select>
                 </div>
                 <div class="modal-footer">
@@ -281,31 +330,15 @@ The above copyright notice and this permission notice shall be included in all c
                       Get the pro version
                     </a>
                 </li> -->
-            <li class="button-container">
-                <a href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html"
-                   target="_blank" class="btn btn-default btn-block">
-                    View Documentation
-                </a>
-            </li>
-            <li class="button-container github-star">
-                <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard"
-                   data-icon="octicon-star" data-size="large" data-show-count="true"
-                   aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-            </li>
-            <li class="header-title">Thank you for 95 shares!</li>
-            <li class="button-container text-center">
-                <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45
-                </button>
-                <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50
-                </button>
-                <br>
-                <br>
-            </li>
+
+
+
         </ul>
     </div>
 </div>
 <!--   Core JS Files   -->
 <script src="/js/jquery.min.js"></script>
+<script src="/js/addons/datatables.min.js"></script>
 <!--<script src="../assets/js/core/popper.min.js"></script>-->
 <script src="/js/material-dashboard.min.js"></script>
 <script src="/js/bootstrap.js"></script>
@@ -320,206 +353,57 @@ The above copyright notice and this permission notice shall be included in all c
 <!--&lt;!&ndash; Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard &ndash;&gt;-->
 <!--<script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>-->
 <!--&lt;!&ndash;	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>-->
-<!--&lt;!&ndash;  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>-->
-<!--&lt;!&ndash;  DataTables.net Plugin, full documentation here: https://datatables.net/  &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/jquery.dataTables.min.js"></script>-->
-<!--&lt;!&ndash;	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>-->
-<!--&lt;!&ndash; Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>-->
-<!--&lt;!&ndash;  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/fullcalendar.min.js"></script>-->
-<!--&lt;!&ndash; Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/jquery-jvectormap.js"></script>-->
-<!--&lt;!&ndash;  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/nouislider.min.js"></script>-->
-<!--&lt;!&ndash; Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert &ndash;&gt;-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>-->
-<!--&lt;!&ndash; Library for adding dinamically elements &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/arrive.min.js"></script>-->
+<!
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Chartist JS -->
-<script src="../assets/js/plugins/chartist.min.js"></script>
+
 <!--  Notifications Plugin    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/demo/demo.js"></script>
+
+
 <script>
     $(document).ready(function () {
-        $().ready(function () {
-            $sidebar = $('.sidebar');
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+    $(document).ready(function() {
 
-            $sidebar_img_container = $sidebar.find('.sidebar-background');
+        //$(".zz-modal").click(function() {
+        //  $("#con-close-modal").modal('show');
+        //});
 
-            $full_page = $('.full-page');
+        $('#basicExampleModal').on('show.bs.modal', function (e) {
+            // console.log(e);
+            // console.log(e.relatedTarget);
 
-            $sidebar_responsive = $('body > .navbar-collapse');
+            var _button = $(e.relatedTarget); // Button that triggered the modal
+            // secroom secstrt secend capac-->
+            // console.log(_button, _button.parents("tr"));
+            var _row = _button.parents("tr");
+            var _secname = _row.find(".secname").text();
+            var secroom = _row.find(".secroom").text()
+            var secstrt = _row.find(".secstrt").text();
+            var secend = _row.find(".secend").text()
+            var capac = _row.find(".capac").text()
+            var block = _row.find(".block").text()
+            var secid = _row.find(".secid").text()
+            // console.log(_invoiceAmt, _chequeAmt);
 
-            window_width = $(window).width();
-
-            fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-            if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
-                if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
-                    $('.fixed-plugin .dropdown').addClass('open');
-                }
-
-            }
-
-            $('.fixed-plugin a').click(function (event) {
-                // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-                if ($(this).hasClass('switch-trigger')) {
-                    if (event.stopPropagation) {
-                        event.stopPropagation();
-                    } else if (window.event) {
-                        window.event.cancelBubble = true;
-                    }
-                }
-            });
-
-            $('.fixed-plugin .active-color span').click(function () {
-                $full_page_background = $('.full-page-background');
-
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                var new_color = $(this).data('color');
-
-                if ($sidebar.length != 0) {
-                    $sidebar.attr('data-color', new_color);
-                }
-
-                if ($full_page.length != 0) {
-                    $full_page.attr('filter-color', new_color);
-                }
-
-                if ($sidebar_responsive.length != 0) {
-                    $sidebar_responsive.attr('data-color', new_color);
-                }
-            });
-
-            $('.fixed-plugin .background-color .badge').click(function () {
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                var new_color = $(this).data('background-color');
-
-                if ($sidebar.length != 0) {
-                    $sidebar.attr('data-background-color', new_color);
-                }
-            });
-
-            $('.fixed-plugin .img-holder').click(function () {
-                $full_page_background = $('.full-page-background');
-
-                $(this).parent('li').siblings().removeClass('active');
-                $(this).parent('li').addClass('active');
-
-
-                var new_image = $(this).find("img").attr('src');
-
-                if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                    $sidebar_img_container.fadeOut('fast', function () {
-                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                        $sidebar_img_container.fadeIn('fast');
-                    });
-                }
-
-                if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-                    $full_page_background.fadeOut('fast', function () {
-                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-                        $full_page_background.fadeIn('fast');
-                    });
-                }
-
-                if ($('.switch-sidebar-image input:checked').length == 0) {
-                    var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                    $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-                }
-
-                if ($sidebar_responsive.length != 0) {
-                    $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-                }
-            });
-
-            $('.switch-sidebar-image input').change(function () {
-                $full_page_background = $('.full-page-background');
-
-                $input = $(this);
-
-                if ($input.is(':checked')) {
-                    if ($sidebar_img_container.length != 0) {
-                        $sidebar_img_container.fadeIn('fast');
-                        $sidebar.attr('data-image', '#');
-                    }
-
-                    if ($full_page_background.length != 0) {
-                        $full_page_background.fadeIn('fast');
-                        $full_page.attr('data-image', '#');
-                    }
-
-                    background_image = true;
-                } else {
-                    if ($sidebar_img_container.length != 0) {
-                        $sidebar.removeAttr('data-image');
-                        $sidebar_img_container.fadeOut('fast');
-                    }
-
-                    if ($full_page_background.length != 0) {
-                        $full_page.removeAttr('data-image', '#');
-                        $full_page_background.fadeOut('fast');
-                    }
-
-                    background_image = false;
-                }
-            });
-
-            $('.switch-sidebar-mini input').change(function () {
-                $body = $('body');
-
-                $input = $(this);
-
-                if (md.misc.sidebar_mini_active == true) {
-                    $('body').removeClass('sidebar-mini');
-                    md.misc.sidebar_mini_active = false;
-
-                    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-
-                } else {
-
-                    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-                    setTimeout(function () {
-                        $('body').addClass('sidebar-mini');
-
-                        md.misc.sidebar_mini_active = true;
-                    }, 300);
-                }
-
-                // we simulate the window Resize so the charts will get updated in realtime.
-                var simulateWindowResize = setInterval(function () {
-                    window.dispatchEvent(new Event('resize'));
-                }, 180);
-
-                // we stop the simulation of Window Resize after the animations are completed
-                setTimeout(function () {
-                    clearInterval(simulateWindowResize);
-                }, 1000);
-
-            });
+            $(this).find(".secid").val(secid);
+            $(this).find(".secname").val(_secname);
+            $(this).find(".secroom").val(secroom);
+            $(this).find(".secstrt").val(secstrt);
+            $(this).find(".secend").val(secend);
+            $(this).find(".block").prop("selected",true);
+            $(this).find(".capac").val(capac);
         });
+
     });
 </script>
+
 <!--<script>-->
 <!--    $(document).ready(function() {-->
 <!--        // Javascript method's body can be found in assets/js/demos.js-->
