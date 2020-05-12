@@ -36,4 +36,9 @@ public class EntryServiceImpl  implements EntryService {
     public Entry findByEntryId(Long id) {
         return entryDao.findEntryById(id);
     }
+
+    @Override
+    public Entry findEntryByName(String entryName) {
+        return entryDao.findEntryByEntryName(entryName);
+    }
 }

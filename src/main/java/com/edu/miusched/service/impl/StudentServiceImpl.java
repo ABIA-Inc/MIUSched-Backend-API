@@ -34,4 +34,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteStudentById(Long id) { studentDao.deleteById(id);  }
+
+    @Override
+    public void deleteStudentByStudentId(String studentId) {
+        studentDao.deleteStudentByStudentId(studentId);
+    }
 }

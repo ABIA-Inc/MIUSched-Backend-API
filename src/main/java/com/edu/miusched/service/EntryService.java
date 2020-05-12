@@ -14,4 +14,6 @@ public interface EntryService {
 
     Entry findByEntryId(Long id);
 
+    Entry findEntryByName(String entryName);
+
 }

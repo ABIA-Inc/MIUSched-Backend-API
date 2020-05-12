@@ -9,6 +9,6 @@ public interface StudentService {
     public Student getStudentByEmail(String email);
     public Student getStudentById(Long studentID);
     public List<Student> getAllStudents();
-    void deleteStudentById(Long id);
-
+    public void deleteStudentById(Long id);
+    public void deleteStudentByStudentId(String studentId);
 }
