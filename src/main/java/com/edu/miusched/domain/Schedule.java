@@ -4,12 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,6 +18,6 @@ public class Schedule {
     private Long id;
     @NotEmpty
     private ScheduleStatus status;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    @OneToMany
+    private List<Block> blocks;
 }
