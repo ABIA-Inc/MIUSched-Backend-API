@@ -21,8 +21,8 @@ public class EntryServiceImpl  implements EntryService {
     }
 
     @Override
-    public void save(Entry entry) {
-        entryDao.save(entry);
+    public Entry save(Entry entry) {
+        return entryDao.save(entry);
 
     }
 
