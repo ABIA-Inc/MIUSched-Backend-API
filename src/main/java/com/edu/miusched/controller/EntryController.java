@@ -37,9 +37,8 @@ public class EntryController {
     @RequestMapping(value = {"/addnewentry"}, method = RequestMethod.POST)
     public String registerEntry(@ModelAttribute("newEntry") @Validated Entry entryObj, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "entryAddForm";
+            return "Admin/ManageEntry";
         } else {
-            System.out.println(entryObj.getEntryName());
             entryObj.setEntryName(entryObj.getEntryType().name()+entryObj.getStartDate().getYear());
             entryService.save(entryObj);
             return "redirect:/admin/entry";
@@ -72,8 +71,9 @@ public class EntryController {
         if (result.hasErrors()) {
             return "Admin/ManageEntry";
         }
-        System.out.println( "id : " +entryupdate.getId());
+        //System.out.println( "id : " +entryupdate.getId());
         entryService.save(entryupdate);
         return "redirect:/admin/entry";
     }
 }
+

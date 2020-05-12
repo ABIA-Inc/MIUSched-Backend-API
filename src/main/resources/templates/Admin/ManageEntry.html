@@ -119,15 +119,15 @@ The above copyright notice and this permission notice shall be included in all c
                                     </thead>
                                     <tbody>
                                     <tr th:each="entry : ${entries}">
-                                        <td  th:text="${entry.id}" class="secid"></td>
+                                        <td style=" display: none" th:text="${entry.id}" class="secid"></td>
                                         <td th:text="${entry.entryName}"class="secname"></td>
                                         <td th:text="${entry.FPPNum}" class="secnum1"></td>
                                         <td th:text="${entry.MPPNum}" class="secnum2"></td>
                                         <td th:text="${entry.startDate}" class="secdate1"></td>
                                         <td th:text="${entry.endDate}" class="secdate2"></td>
 <!--                                        <td> <td><button type="button" data-toggle="modal" data-target="#updatexampleModal" class="btn btn-success">edit</button></td>-->
-                          <td><a  data-toggle="modal" data-target="#updatexampleModal"  th:href="${'/admin/entry/edit/' + entry.id}"class="btn btn-success">Edit</a> </td>
-                                        <td><a  th:href="${'/admin/entry/delete/' + entry.id}" return confirm('Are you sure?') class="btn btn-danger">Delete</a> </td>
+                          <td><a  data-toggle="modal" data-target="#updatexampleModal"  th:href="${'/admin/entry/edit/' + entry.id}"class="btn btn-default">Edit</a> </td>
+                                        <td><a  class="btn btn-danger" th:href="${'/admin/entry/delete/' + entry.id}" onclick="return confirm('Are you sure?')">Delete</a> </td>
                                     </tr>
 
                                     </tbody>
@@ -171,8 +171,8 @@ The above copyright notice and this permission notice shall be included in all c
                                 th:value="${entryName}" th:text="${entryName}"></option>
                     </select>
 <!--                    <input type="text" id="materialSubscriptionFormPasswords" class="form-control mb-4" placeholder="Title">-->
-                    <input type="text" id="materialSubscriptionFormEmaile" class="form-control mb-4 secnum1" placeholder="FPP Number" th:field="*{FPPNum}">
-                    <input type="text" id="materialSubscriptionFormEmailm" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
+                    <input type="number" id="materialSubscriptionFormEmaile" class="form-control mb-4 secnum1" placeholder="FPP Number" th:field="*{FPPNum}">
+                    <input type="number" id="materialSubscriptionFormEmailm" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
                     <input type="date" id="materialSubscriptionFormEmaild" class="form-control mb-4 secdate1" placeholder="Start Date"th:field="*{startDate}" >
                     <input type="date" id="materialSubscriptionFor" class="form-control mb-4 secdate2" placeholder="End Date"th:field="*{endDate}" >
 <!--                    <input type="date" id="materialSubscriptionFormEmaidl" class="form-control mb-4" placeholder="Name">-->
