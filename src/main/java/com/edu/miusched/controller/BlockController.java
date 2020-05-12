@@ -11,6 +11,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class BlockController {
 
@@ -27,13 +30,22 @@ public class BlockController {
         model.addAttribute("block1", new Block());
         model.addAttribute("blocks", blockService.getAllBlocks());
 
+        List<String> entryNames = new ArrayList<>();
+        for (Entry entry: entryService.getAllEntries()) {
+            entryNames.add(entry.getEntryName());
+        }
+        model.addAttribute("entryNames", entryNames);
+
         return "Admin/ManageBlock";
     }
 
     @RequestMapping(value = "/admin/block/addblock", method = RequestMethod.POST)
     public String addBlock(@ModelAttribute("newBlock") Block newBlock, Model model){
 
+//        model.addAttribute("entryName", entryNames);
+        System.out.println();
         newBlock.setEntry(entryService.findEntryByName(newBlock.getEntryName()));
+
         blockService.save(newBlock);
 
         return "redirect:/admin/block";

@@ -106,9 +106,10 @@ The above copyright notice and this permission notice shall be included in all c
                                 <h5 class="card-title text-center">Block List</h5>
                                 <p class="card-category "></p>
                             </div>
-                                <div th:if="${not #lists.isEmpty(blocks)}">
+<!--                            th:if="${not #lists.isEmpty(blocks)}"-->
+                                <div class="card-body table-responsive">
                                     <table class="table table-hover">
-                                        <thead class="text-warning">
+                                        <thead class="text-success">
                                             <th>Entry Name</th>
                                             <th>Block Name</th>
                                             <th>FPP Number</th>
@@ -158,7 +159,12 @@ The above copyright notice and this permission notice shall be included in all c
             <form action="#" th:action="@{/admin/block/addblock}" th:object="${newBlock}" method="post">
                 <input type="hidden" th:field="*{id}">
                 <div class="modal-body">
-                    <input type="text" id="entry1" class="form-control mb-4 entryname" th:field="*{entryName}" placeholder="Entry Name">
+                    <select  class="browser-default custom-select mb-4 entryname" name="entryName">
+                        <option value="" disabled selected> Select Entry</option>
+                        <option th:each="entryName : ${entryNames}"
+                                th:value="${entryName}" th:text="${entryName}"></option>
+                    </select>
+<!--                    <input type="text" id="entry1" class="form-control mb-4 entryname" th:field="*{entryName}" placeholder="Entry Name">-->
                     <input type="text" id="block1" class="form-control mb-4 blockname" th:field="*{blockName}" placeholder="Block Name">
                     <input type="number" min="0" id="fpp1" class="form-control mb-4 fppnum" th:field="*{FPPNum}"placeholder="FPP Num">
                     <input type="number" min="0" id="mpp1" class="form-control mb-4 mppnum" th:field="*{MPPNum}" placeholder="MPP Num">
@@ -193,7 +199,13 @@ The above copyright notice and this permission notice shall be included in all c
                 <input  class = "blockid" type="hidden"   th:field="*{id}"/>
                 <div class="modal-body">
 
-                    <input type="text" id="entry2" class="form-control mb-4 entryname" placeholder="Entry Name" th:field="*{entryName}">
+                    <select  class="browser-default custom-select mb-4 entryname" name="entryName">
+                        <option value="" disabled selected> Select Entry</option>
+                        <option th:each="entryName : ${entryNames}"
+                                th:value="${entryName}" th:text="${entryName}"></option>
+                    </select>
+
+<!--                    <input type="text" id="entry2" class="form-control mb-4 entryname" placeholder="Entry Name" th:field="*{entryName}">-->
                     <input type="text" id="block2" class="form-control mb-4 blockname" placeholder="Block Name" th:field="*{blockName}">
                     <input type="number" min="0" id="fpp2" class="form-control mb-4 fppnum" placeholder="FPP Number" th:field="*{FPPNum}">
                     <input type="number" min="0" id="mpp2" class="form-control mb-4 mppnum" placeholder="MPP Number" th:field="*{MPPNum}">
