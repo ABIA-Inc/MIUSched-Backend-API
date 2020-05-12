@@ -23,7 +23,7 @@ public class EntryController {
     EntryService entryService;
 
     @RequestMapping(value = {"/admin/entry"}, method = RequestMethod.GET)
-    public String getForm(@ModelAttribute("newEntry") Entry entry, Model model) {
+    public String getEntryForm(@ModelAttribute("newEntry") Entry entry, Model model) {
         Entry  entry1 = new Entry();
         List<Entry> entries = new ArrayList<Entry>();
         entries.addAll(entryService.getAllEntries());
@@ -34,8 +34,8 @@ public class EntryController {
         return "Admin/ManageEntry";
     }
 
-    @RequestMapping(value = {"/addnewentry"}, method = RequestMethod.POST)
-    public String registerEntry(@ModelAttribute("newEntry") @Validated Entry entryObj, BindingResult result, Model model) {
+    @RequestMapping(value = {"/admin/entry/addnewentry"}, method = RequestMethod.POST)
+    public String addEntry(@ModelAttribute("newEntry") @Validated Entry entryObj, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "Admin/ManageEntry";
         } else {
@@ -46,7 +46,7 @@ public class EntryController {
     }
 
     @RequestMapping("/admin/entries")
-    public String listProducts(Model model) {
+    public String listEntries(Model model) {
 
         model.addAttribute("entries", entryService.getAllEntries());
 
@@ -54,24 +54,24 @@ public class EntryController {
     }
 
     @RequestMapping("/admin/entry/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String deleteEntry(@PathVariable Long id) {
         entryService.deleteEntry(id);
         return "redirect:/admin/entry";
     }
 
     @RequestMapping(value = "/admin/entry/edit/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable Long id, ModelMap model) {
+    public String editEntry(@PathVariable Long id, ModelMap model) {
         Entry entry = new Entry();
         model.addAttribute("entry", entryService.findByEntryId(id));
         return "Admin/ManageEntry";
     }
 
-    @RequestMapping(value = "/updateentry", method = RequestMethod.POST)
-    public String saveUpdate(@ModelAttribute("entry") Entry entryupdate, BindingResult result, ModelMap model) {
+    @RequestMapping(value = "/admin/entry/updateentry", method = RequestMethod.POST)
+    public String updateEntry(@ModelAttribute("entry") Entry entryupdate, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             return "Admin/ManageEntry";
         }
-        //System.out.println( "id : " +entryupdate.getId());
+
         entryService.save(entryupdate);
         return "redirect:/admin/entry";
     }
