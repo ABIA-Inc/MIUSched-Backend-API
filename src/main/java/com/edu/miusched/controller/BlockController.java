@@ -17,8 +17,7 @@ import java.util.List;
 @Controller
 public class BlockController {
 
-    @GetMapping("/admin/block/")
-   public String index() {
+
     @Autowired
     BlockService blockService;
 
@@ -83,7 +82,7 @@ public class BlockController {
     @RequestMapping(value = "/admin/block/delete/{id}", method = RequestMethod.GET)
     public String deleteBlock(@PathVariable Long id, Model model){
 
-        blockService.deleteBlockById(id);ss
+        blockService.deleteBlockById(id);
 
         return "redirect:/admin/block";
     }

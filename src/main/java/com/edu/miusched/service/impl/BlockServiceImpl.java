@@ -1,6 +1,8 @@
 package com.edu.miusched.service.impl;
 
-public class BlockServiceImpl {
+import org.springframework.stereotype.Service;
+
+
 
 import com.edu.miusched.dao.BlockDao;
 import com.edu.miusched.domain.Block;
