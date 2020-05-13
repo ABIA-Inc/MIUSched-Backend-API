@@ -15,7 +15,7 @@ public class BlockServiceImpl implements BlockService {
     BlockDao blockDao;
 
     @Override
-    public void save(Block block) {
+    public Block save(Block block) {
         blockDao.save(block);
     }
 
