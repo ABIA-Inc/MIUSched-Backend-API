@@ -91,7 +91,7 @@ public class EntryControllerTest {
 
     @Test
     public void testNewEntityform() throws Exception {
-        Integer id = 1;
+
 
         //should not call service
        verifyNoMoreInteractions(entryService);
@@ -116,7 +116,7 @@ public class EntryControllerTest {
     }
 
     @Test
-    public void testSaveOrUpdate() throws Exception {
+    public void testUpdate() throws Exception {
         Long id = 2l;
         String entryname = "February2020";
         int FPPNum= 49;
@@ -168,6 +168,59 @@ public class EntryControllerTest {
         assertEquals(endDate, boundEntry.getValue().getEndDate());
     }
 
+    @Test
+    public void testADD() throws Exception {
+        Long id = 2l;
+        String entryname = "AUGUST2020";
+        int FPPNum= 49;
+        int MPPNum = 60;
+        LocalDate startDate= LocalDate.of(2020, 10, 13);
+        LocalDate endDate = LocalDate.of(2021, 10, 13);
+
+
+        Entry entry = new Entry();
+        entry.setId(id);
+        entry.setEntryName(entryname);
+        entry.setFPPNum(FPPNum);
+        entry.setMPPNum(MPPNum);
+        entry.setStartDate(startDate);
+        entry.setEndDate(endDate);
+        entry.setEntryType(EntryType.AUGUST);
+
+
+        when(entryService.save(entry)).thenReturn(entry);
+        mockMvc.perform(post("/admin/entry/addnewentry")
+                .param("id", "2")
+                .param("entryName", entryname)
+                .param("FPPNum", "49")
+                .param("MPPNum", "60")
+                .param("startDate", String.valueOf(LocalDate.of(2020, 10, 13)))
+                .param("endDate", String.valueOf(LocalDate.of(2021, 10, 13)))
+                .param("entryType", EntryType.AUGUST.toString()))
+
+
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/admin/entry"))
+                .andExpect(model().attribute("newEntry", instanceOf(Entry.class)))
+                .andExpect(model().attribute("newEntry", hasProperty("id", is(id))))
+                .andExpect(model().attribute("newEntry", hasProperty("entryName", is(entryname))))
+                .andExpect(model().attribute("newEntry", hasProperty("FPPNum", is(FPPNum))))
+                .andExpect(model().attribute("newEntry", hasProperty("MPPNum", is(MPPNum))))
+                .andExpect(model().attribute("newEntry", hasProperty("startDate", is(startDate))))
+                .andExpect(model().attribute("newEntry", hasProperty("endDate", is(endDate))));
+
+
+        //verify properties of bound object
+        ArgumentCaptor<Entry> boundEntry = ArgumentCaptor.forClass(Entry.class);
+        verify(entryService).save(boundEntry.capture());
+
+        assertEquals(id, boundEntry.getValue().getId());
+        assertEquals(entryname, boundEntry.getValue().getEntryName());
+        assertEquals(FPPNum, boundEntry.getValue().getFPPNum());
+        assertEquals(MPPNum, boundEntry.getValue().getMPPNum());
+        assertEquals(startDate, boundEntry.getValue().getStartDate());
+        assertEquals(endDate, boundEntry.getValue().getEndDate());
+    }
 
 
 
