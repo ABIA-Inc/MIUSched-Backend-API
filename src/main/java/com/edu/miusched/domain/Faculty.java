@@ -3,6 +3,7 @@ package com.edu.miusched.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -23,6 +24,7 @@ public class Faculty {
     private String LastName;
     private String email;
     private LocalDate startDate;
+    @Value("${courseLoad:0}")
     private Integer courseLoad;
     private Integer intervalBetweenBlocks;
     @OneToOne

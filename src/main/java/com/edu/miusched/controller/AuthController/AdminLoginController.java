@@ -24,7 +24,7 @@ public class AdminLoginController {
     @GetMapping("/adminloginPage")
     String login(Model model) {
 
-        model.addAttribute("user",accountImp.getAccById(1l).getRole().name());
+//        model.addAttribute("user",accountImp.getAccById(1l).getRole().name());
         return "Auth/Login";
     }
 

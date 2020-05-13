@@ -35,10 +35,6 @@ public class Entry {
     private EntryType entryType;
     @OneToMany(cascade = CascadeType.ALL,mappedBy="entry")
     private List<Student> students = new ArrayList<>();
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name="blockid", referencedColumnName="entryid")
-//    private List<Block> blocks;
-    // if unidirectional works make by this using bidrectional//
      @OneToMany(cascade = CascadeType.ALL,mappedBy = "entry")
     private List<Block>blocks = new ArrayList<>();
 }

@@ -35,11 +35,6 @@ public class Block {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    // if two way does not work change by this one //
-    /*@OneToMany (cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "sectionid", referencedColumnName = "blockid")
-    private List<Section> sections;*/
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
     private List<Section> sections = new ArrayList<>();
 

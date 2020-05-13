@@ -34,7 +34,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
 <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
         <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -45,41 +45,41 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item active  ">
-                    <a class="nav-link" href="/Admindashboard">
-                        <i class="material-icons">Admin Dashboard</i>
-                        <p> Admin Dashboard</p>
+                <li class="nav-item   ">
+                    <a class="nav-link" href="/admin/admindashboard">
+                        <i class="material-icons">dashboard</i>
+                        <p>Admin Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item ">
+                <l class="nav-item ">
                     <a class="nav-link" href="admin/profile">
-                        <i class="material-icons">Person</i>
+                        <i class="material-icons">location_searching</i>
                         <p>User Profile</p>
                     </a>
-                </li>
-                <li class="nav-item ">
+                </l>
+                <li class="nav-item active">
                     <a class="nav-link" href="/admin/entry">
-                        <i class="material-icons">Manage Entry</i>
+                        <i class="material-icons">location_searching</i>
                         <p>Manage Entry</p>
                     </a>
                 </li>
 
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/block">
-                        <i class="material-icons">Manage Block</i>
+                        <i class="material-icons">language</i>
                         <p>Manage Block</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/section">
-                        <i class="material-icons">Manage Section</i>
+                        <i class="material-icons">layers</i>
                         <p>Manage Section</p>
                     </a>
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="/admin/entry">
-                        <i class="material-icons">Manage Course</i>
+                    <a class="nav-link" href="./rtl.html">
+                        <i class="material-icons">library_books</i>
                         <p>Manage Course</p>
                     </a>
                 </li>
@@ -175,17 +175,6 @@ The above copyright notice and this permission notice shall be included in all c
                     <input type="number" min="0" id="materialSubscriptionFormEmailm" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
                     <input type="date" id="start3" class="form-control mb-4 secdate1" placeholder="Start Date"th:field="*{startDate}" >
                     <input type="date" id="end3" class="form-control mb-4 secdate2" placeholder="End Date"th:field="*{endDate}" >
-<!--                    <input type="date" id="materialSubscriptionFormEmaidl" class="form-control mb-4" placeholder="Name">-->
-<!--                    <input type="number" max="30" min="2" id="materialSubscriptionFormroom" class="form-control mb-4" placeholder="Capacity">-->
-
-
-
-
-
-<!--                    <select class="browser-default custom-select mb-4">-->
-<!--                        <option value="" disabled selected> Choose Block</option>-->
-<!--                        <option value="1" >Feedback</option>-->
-<!--                    </select>-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -214,20 +203,11 @@ The above copyright notice and this permission notice shall be included in all c
 
                 <input  class = "secid" type="hidden"   th:field="*{id}"/>
                 <div class="modal-body">
-                    <!--                                       <input type="hidden" th:field="*{id}"/>&ndash;&gt;-->
-
-                    <!--                    <select  class="browser-default custom-select mb-4" name="entryType">-->
-                    <!--                        <option value="" disabled selected> Entry Name</option>-->
-                    <!--                        <option th:each="entryName : ${T(com.edu.miusched.domain.EntryType).values()}"-->
-                    <!--                                th:value="${entryName}" th:text="${entryName}"></option>-->
-                    <!--                    </select>-->
                     <input type="text" id="materialSubscript" class="form-control mb-4 secname" placeholder="Entry Name" th:field="*{entryName}">
                     <input type="number" min="0" id="materialupdate" class="form-control mb-4 secnum1" placeholder="FPP Number" th:field="*{FPPNum}">
                     <input type="number" min="0" id="materialupdatempp" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
                     <input type="date" id="start4" class="form-control mb-4 secdate1" placeholder="Start Date"th:field="*{startDate}" >
                     <input type="date" id="end4" class="form-control mb-4 secdate2" placeholder="End Date"th:field="*{endDate}" >
-                    <!--                    <input type="date" id="materialSubscriptionFormEmaidl" class="form-control mb-4" placeholder="Name">-->
-                    <!--                    <input type="number" max="30" min="2" id="materialSubscriptionFormroom" class="form-control mb-4" placeholder="Capacity">-->
 
 
                 </div>
@@ -288,29 +268,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 
 <script>
-    var start1 = document.getElementById('start3');
-    var end1 = document.getElementById('end3');
-    var start2 = document.getElementById('start4');
-    var end2 = document.getElementById('end4');
 
-    start1.addEventListener('change', function() {
-        if (start1.value)
-            end1.min = start1.value;
-    }, false);
-    end1.addEventListener('change', function() {
-        if (end1.value)
-            start1.max = end1.value;
-    }, false);
-
-    start2.addEventListener('change', function() {
-        if (start2.value)
-            end2.min = start2.value;
-    }, false);
-
-    end2.addEventListener('change', function() {
-        if (end2.value)
-            start2.max = end2.value;
-    }, false);
 
 </script>
 

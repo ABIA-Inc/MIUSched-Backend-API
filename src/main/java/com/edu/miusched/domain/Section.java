@@ -1,8 +1,7 @@
 package com.edu.miusched.domain;
 
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -10,7 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,10 +21,13 @@ public class Section {
     private Long id;
     @NotEmpty
     private String sectionName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private String classRoom;
     private Integer capacity;
+//    private Integer
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "section")
     private List<Grade> grades = new ArrayList<>();
 

@@ -19,8 +19,6 @@ public class Account {
     @NonNull
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
 //    @Enumerated(EnumType.STRING)
 //    public Role role() {
@@ -52,11 +50,4 @@ public class Account {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }
