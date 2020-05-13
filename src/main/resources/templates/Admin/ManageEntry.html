@@ -1,14 +1,4 @@
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
 
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -48,7 +38,7 @@ The above copyright notice and this permission notice shall be included in all c
                 <li class="nav-item   ">
                     <a class="nav-link" href="/admin/admindashboard">
                         <i class="material-icons">dashboard</i>
-                        <p>Admin Dashboard</p>
+                        <p> Admin Dashboard</p>
                     </a>
                 </li>
                 <l class="nav-item ">
@@ -56,7 +46,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <i class="material-icons">location_searching</i>
                         <p>User Profile</p>
                     </a>
-                </l>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/admin/entry">
                         <i class="material-icons">location_searching</i>
@@ -78,7 +68,7 @@ The above copyright notice and this permission notice shall be included in all c
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="./rtl.html">
+                    <a class="nav-link" href="/admin/course">
                         <i class="material-icons">library_books</i>
                         <p>Manage Course</p>
                     </a>
@@ -107,13 +97,16 @@ The above copyright notice and this permission notice shall be included in all c
                                 <p class="card-category "></p>
                             </div>
                             <div class="card-body table-responsive">
-                                <table class="table table-hover">
+                                <table class="table  table-hover" id="dtBasicExample">
                                     <thead class="text-success">
                                     <th>Entry Name</th>
                                     <th>FPP Number</th>
                                     <th>MPP Number</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
 <!--                                    <th>Edit Entry</th>-->
 <!--                                    <th>Delete Entry</th>-->
                                     </thead>
@@ -171,6 +164,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 th:value="${entryName}" th:text="${entryName}"></option>
                     </select>
 <!--                    <input type="text" id="materialSubscriptionFormPasswords" class="form-control mb-4" placeholder="Title">-->
+
                     <input type="number" min="0" id="materialSubscriptionFormEmaile" class="form-control mb-4 secnum1" placeholder="FPP Number" th:field="*{FPPNum}">
                     <input type="number" min="0" id="materialSubscriptionFormEmailm" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
                     <input type="date" id="start3" class="form-control mb-4 secdate1" placeholder="Start Date"th:field="*{startDate}" >
@@ -227,6 +221,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <!--   Core JS Files   -->
 <script src="/js/jquery.min.js"></script>
+<script src="/js/addons/datatables.min.js"></script>
 <!--<script src="../assets/js/core/popper.min.js"></script>-->
 <script src="/js/material-dashboard.min.js"></script>
 <script src="/js/bootstrap.js"></script>

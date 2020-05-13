@@ -1,5 +1,9 @@
 package com.edu.miusched.service.impl;
 
+import org.springframework.stereotype.Service;
+
+
+
 import com.edu.miusched.dao.BlockDao;
 import com.edu.miusched.domain.Block;
 import com.edu.miusched.service.BlockService;
@@ -15,8 +19,8 @@ public class BlockServiceImpl implements BlockService {
     BlockDao blockDao;
 
     @Override
-    public void save(Block block) {
-        blockDao.save(block);
+    public Block save(Block block) {
+         return  blockDao.save(block);
     }
 
     @Override

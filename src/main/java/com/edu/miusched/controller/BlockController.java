@@ -17,6 +17,7 @@ import java.util.List;
 @Controller
 public class BlockController {
 
+
     @Autowired
     BlockService blockService;
 
@@ -25,10 +26,10 @@ public class BlockController {
 
     @RequestMapping(value = "/admin/block", method = RequestMethod.GET)
     public String getBlockForm(@ModelAttribute("newBlock") Block block, Model model){
-
+        model.addAttribute("blocks", blockService.getAllBlocks());
         model.addAttribute("newBlock", block);
         model.addAttribute("block1", new Block());
-        model.addAttribute("blocks", blockService.getAllBlocks());
+
 
         List<String> entryNames = new ArrayList<>();
         for (Entry entry: entryService.getAllEntries()) {
@@ -51,7 +52,7 @@ public class BlockController {
         return "redirect:/admin/block";
     }
 
-        @RequestMapping("/admin/blocks")
+        @RequestMapping(value="/admin/blocks", method = RequestMethod.GET)
     public String listBlocks(Model model) {
 
         model.addAttribute("blocks", blockService.getAllBlocks());
