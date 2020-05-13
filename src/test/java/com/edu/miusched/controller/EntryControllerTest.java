@@ -136,7 +136,7 @@ public class EntryControllerTest {
 
         when(entryService.save(ArgumentMatchers.<Entry>any())).thenReturn(entry);
 
-        mockMvc.perform(post("/updateentry")
+        mockMvc.perform(post("/admin/entry/updateentry")
                 .param("id", "2")
                 .param("entryName", entryname)
                 .param("FPPNum", "49")
