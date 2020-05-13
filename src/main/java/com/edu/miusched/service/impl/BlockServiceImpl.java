@@ -1,5 +1,7 @@
 package com.edu.miusched.service.impl;
 
+public class BlockServiceImpl {
+
 import com.edu.miusched.dao.BlockDao;
 import com.edu.miusched.domain.Block;
 import com.edu.miusched.service.BlockService;
@@ -16,7 +18,7 @@ public class BlockServiceImpl implements BlockService {
 
     @Override
     public Block save(Block block) {
-        blockDao.save(block);
+         return  blockDao.save(block);
     }
 
     @Override
