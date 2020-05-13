@@ -8,10 +8,12 @@ import java.util.List;
 public interface EntryService {
     List<Entry> getAllEntries();
 
-    void save(Entry entry);
+    public Entry save(Entry entry);
 
     void deleteEntry(Long id);
 
     Entry findByEntryId(Long id);
+
+    Entry findEntryByName(String entryName);
 
 }

@@ -27,6 +27,7 @@ public class Section {
     private LocalDate endDate;
     private String classRoom;
     private Integer capacity;
+//    private Integer
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "section")
     private List<Grade> grades = new ArrayList<>();
 

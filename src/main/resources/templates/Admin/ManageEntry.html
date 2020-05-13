@@ -18,7 +18,7 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Admin  home page
+        Admin  Home Page
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <!--     Fonts and icons     -->
@@ -34,7 +34,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
 <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
         <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -45,42 +45,42 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item active  ">
-                    <a class="nav-link" href="/Admindashboard">
-                        <i class="material-icons">Dashboard</i>
-                        <p> Admin Dashboard</p>
+                <li class="nav-item   ">
+                    <a class="nav-link" href="/admin/admindashboard">
+                        <i class="material-icons">dashboard</i>
+                        <p>Admin Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item ">
+                <l class="nav-item ">
                     <a class="nav-link" href="admin/profile">
-                        <i class="material-icons">Person</i>
+                        <i class="material-icons">location_searching</i>
                         <p>User Profile</p>
                     </a>
-                </li>
-                <li class="nav-item ">
+                </l>
+                <li class="nav-item active">
                     <a class="nav-link" href="/admin/entry">
-                        <i class="material-icons">language</i>
+                        <i class="material-icons">location_searching</i>
                         <p>Manage Entry</p>
                     </a>
                 </li>
 
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/block">
-                        <i class="material-icons">Manage Block</i>
-                        <p>Blocks</p>
+                        <i class="material-icons">language</i>
+                        <p>Manage Block</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/section">
-                        <i class="material-icons">language</i>
+                        <i class="material-icons">layers</i>
                         <p>Manage Section</p>
                     </a>
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="/admin/entry">
-                        <i class="material-icons">language</i>
-                        <p>Entry</p>
+                    <a class="nav-link" href="./rtl.html">
+                        <i class="material-icons">library_books</i>
+                        <p>Manage Course</p>
                     </a>
                 </li>
 
@@ -103,7 +103,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="col-lg-10 col-md-12 mx-auto mt-2">
                         <div class="card">
                             <div class="card-header card-header-success">
-                                <h5 class="card-title text-center">Entries Information</h5>
+                                <h5 class="card-title text-center">Entry List</h5>
                                 <p class="card-category "></p>
                             </div>
                             <div class="card-body table-responsive">
@@ -119,15 +119,15 @@ The above copyright notice and this permission notice shall be included in all c
                                     </thead>
                                     <tbody>
                                     <tr th:each="entry : ${entries}">
-                                        <td  th:text="${entry.id}" class="secid"></td>
+                                        <td style=" display: none" th:text="${entry.id}" class="secid"></td>
                                         <td th:text="${entry.entryName}"class="secname"></td>
                                         <td th:text="${entry.FPPNum}" class="secnum1"></td>
                                         <td th:text="${entry.MPPNum}" class="secnum2"></td>
                                         <td th:text="${entry.startDate}" class="secdate1"></td>
                                         <td th:text="${entry.endDate}" class="secdate2"></td>
 <!--                                        <td> <td><button type="button" data-toggle="modal" data-target="#updatexampleModal" class="btn btn-success">edit</button></td>-->
-                          <td><a  data-toggle="modal" data-target="#updatexampleModal"  th:href="${'/admin/entry/edit/' + entry.id}"class="btn btn-success">Edit</a> </td>
-                                        <td><a  th:href="${'/admin/entry/delete/' + entry.id}" return confirm('Are you sure?') class="btn btn-danger">Delete</a> </td>
+                          <td><a  data-toggle="modal" data-target="#updatexampleModal"  th:href="${'/admin/entry/edit/' + entry.id}"class="btn btn-default">Edit</a> </td>
+                                        <td><a  class="btn btn-danger" th:href="${'/admin/entry/delete/' + entry.id}" onclick="return confirm('Are you sure?')">Delete</a> </td>
                                     </tr>
 
                                     </tbody>
@@ -155,12 +155,12 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add new Entry</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="cancel" data-dismiss="modal" aria-label="Cancel">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 <!--            <form class="text-center" style="color: #757575;" action="#!">-->
-                <form class="text-center" style="color: #757575;" action="#" th:action="@{/addnewentry}" th:object="${newEntry}"
+                <form class="text-center" style="color: #757575;" action="#" th:action="@{/admin/entry/addnewentry}" th:object="${newEntry}"
                       method="post">
                 <div class="modal-body">
                   <input type="hidden" th:field="*{id}"/>
@@ -171,24 +171,13 @@ The above copyright notice and this permission notice shall be included in all c
                                 th:value="${entryName}" th:text="${entryName}"></option>
                     </select>
 <!--                    <input type="text" id="materialSubscriptionFormPasswords" class="form-control mb-4" placeholder="Title">-->
-                    <input type="text" id="materialSubscriptionFormEmaile" class="form-control mb-4 secnum1" placeholder="FPP Number" th:field="*{FPPNum}">
-                    <input type="text" id="materialSubscriptionFormEmailm" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
-                    <input type="date" id="materialSubscriptionFormEmaild" class="form-control mb-4 secdate1" placeholder="Start Date"th:field="*{startDate}" >
-                    <input type="date" id="materialSubscriptionFor" class="form-control mb-4 secdate2" placeholder="End Date"th:field="*{endDate}" >
-<!--                    <input type="date" id="materialSubscriptionFormEmaidl" class="form-control mb-4" placeholder="Name">-->
-<!--                    <input type="number" max="30" min="2" id="materialSubscriptionFormroom" class="form-control mb-4" placeholder="Capacity">-->
-
-
-
-
-
-<!--                    <select class="browser-default custom-select mb-4">-->
-<!--                        <option value="" disabled selected> Choose Block</option>-->
-<!--                        <option value="1" >Feedback</option>-->
-<!--                    </select>-->
+                    <input type="number" min="0" id="materialSubscriptionFormEmaile" class="form-control mb-4 secnum1" placeholder="FPP Number" th:field="*{FPPNum}">
+                    <input type="number" min="0" id="materialSubscriptionFormEmailm" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
+                    <input type="date" id="start3" class="form-control mb-4 secdate1" placeholder="Start Date"th:field="*{startDate}" >
+                    <input type="date" id="end3" class="form-control mb-4 secdate2" placeholder="End Date"th:field="*{endDate}" >
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-success">Save changes</button>
                 </div>
             </form>
@@ -209,30 +198,21 @@ The above copyright notice and this permission notice shall be included in all c
                 </button>
             </div>
             <!--            <form class="text-center" style="color: #757575;" action="#!">-->
-            <form class="text-center" style="color: #757575;" action="#" th:action="@{/updateentry}"
+            <form class="text-center" style="color: #757575;" action="#" th:action="@{/admin/entry/updateentry}"
                   th:object="${entry1}" method="post">
 
                 <input  class = "secid" type="hidden"   th:field="*{id}"/>
                 <div class="modal-body">
-                    <!--                                       <input type="hidden" th:field="*{id}"/>&ndash;&gt;-->
-
-                    <!--                    <select  class="browser-default custom-select mb-4" name="entryType">-->
-                    <!--                        <option value="" disabled selected> Entry Name</option>-->
-                    <!--                        <option th:each="entryName : ${T(com.edu.miusched.domain.EntryType).values()}"-->
-                    <!--                                th:value="${entryName}" th:text="${entryName}"></option>-->
-                    <!--                    </select>-->
                     <input type="text" id="materialSubscript" class="form-control mb-4 secname" placeholder="Entry Name" th:field="*{entryName}">
-                    <input type="number" id="materialupdate" class="form-control mb-4 secnum1" placeholder="FPP Number" th:field="*{FPPNum}">
-                    <input type="number" id="materialupdatempp" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
-                    <input type="date" id="materialupdatestardate" class="form-control mb-4 secdate1" placeholder="Start Date"th:field="*{startDate}" >
-                    <input type="date" id="materialupdateendate" class="form-control mb-4 secdate2" placeholder="End Date"th:field="*{endDate}" >
-                    <!--                    <input type="date" id="materialSubscriptionFormEmaidl" class="form-control mb-4" placeholder="Name">-->
-                    <!--                    <input type="number" max="30" min="2" id="materialSubscriptionFormroom" class="form-control mb-4" placeholder="Capacity">-->
+                    <input type="number" min="0" id="materialupdate" class="form-control mb-4 secnum1" placeholder="FPP Number" th:field="*{FPPNum}">
+                    <input type="number" min="0" id="materialupdatempp" class="form-control mb-4 secnum2" placeholder="MPP Number" th:field="*{MPPNum}">
+                    <input type="date" id="start4" class="form-control mb-4 secdate1" placeholder="Start Date"th:field="*{startDate}" >
+                    <input type="date" id="end4" class="form-control mb-4 secdate2" placeholder="End Date"th:field="*{endDate}" >
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-success">Update changes</button>
                 </div>
             </form>
@@ -251,55 +231,6 @@ The above copyright notice and this permission notice shall be included in all c
 <script src="/js/material-dashboard.min.js"></script>
 <script src="/js/bootstrap.js"></script>
 
-<!--<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>-->
-<!--&lt;!&ndash; Plugin for the momentJs  &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/moment.min.js"></script>-->
-<!--&lt;!&ndash;  Plugin for Sweet Alert &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/sweetalert2.js"></script>-->
-<!-- Forms Validations Plugin -->
-<!--<script src="../assets/js/plugins/jquery.validate.min.js"></script>-->
-<!--&lt;!&ndash; Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>-->
-<!--&lt;!&ndash;	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>-->
-<!--&lt;!&ndash;  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>-->
-<!--&lt;!&ndash;  DataTables.net Plugin, full documentation here: https://datatables.net/  &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/jquery.dataTables.min.js"></script>-->
-<!--&lt;!&ndash;	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>-->
-<!--&lt;!&ndash; Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>-->
-<!--&lt;!&ndash;  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/fullcalendar.min.js"></script>-->
-<!--&lt;!&ndash; Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/jquery-jvectormap.js"></script>-->
-<!--&lt;!&ndash;  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/nouislider.min.js"></script>-->
-<!--&lt;!&ndash; Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert &ndash;&gt;-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>-->
-<!--&lt;!&ndash; Library for adding dinamically elements &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/arrive.min.js"></script>-->
-<!--  Google Maps Plugin    -->
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
-<!--&lt;!&ndash; Chartist JS &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/chartist.min.js"></script>-->
-<!--&lt;!&ndash;  Notifications Plugin    &ndash;&gt;-->
-<!--<script src="../assets/js/plugins/bootstrap-notify.js"></script>-->
-<!--&lt;!&ndash; Control Center for Material Dashboard: parallax effects, scripts for the example pages etc &ndash;&gt;-->
-<!--<script src="../assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>-->
-<!--&lt;!&ndash; Material Dashboard DEMO methods, don't include it in your project! &ndash;&gt;-->
-<!--<script src="../assets/demo/demo.js"></script>-->
-
-<!--<script>-->
-<!--    $(document).ready(function() {-->
-<!--        // Javascript method's body can be found in assets/js/demos.js-->
-<!--        md.initDashboardPageCharts();-->
-
-<!--    });-->
-<!--</script>-->
-
-
 <script>
     $(document).ready(function () {
         $('#dtBasicExample').DataTable();
@@ -307,13 +238,7 @@ The above copyright notice and this permission notice shall be included in all c
     });
     $(document).ready(function() {
 
-        //$(".zz-modal").click(function() {
-        //  $("#con-close-modal").modal('show');
-        //});
-
         $('#updatexampleModal').on('show.bs.modal', function (e) {
-            // console.log(e);
-            // console.log(e.relatedTarget);
 
             var _button = $(e.relatedTarget); // Button that triggered the modal
             // secroom secstrt secend capac-->
@@ -326,8 +251,6 @@ The above copyright notice and this permission notice shall be included in all c
             var secdate1 = _row.find(".secdate1").text();
             var secdate2 = _row.find(".secdate2").text();
 
-
-            // console.log(_invoiceAmt, _chequeAmt);
             $(this).find(".secid").val(secid);
             $(this).find(".secname").val(_secname);
             $(this).find(".secnum1").val(secnum1);
@@ -342,6 +265,13 @@ The above copyright notice and this permission notice shall be included in all c
 
     });
 </script>
+
+
+<script>
+
+
+</script>
+
 </body>
 
 </html>

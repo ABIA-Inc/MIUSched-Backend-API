@@ -1,10 +1,7 @@
 package com.edu.miusched.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
+//@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -36,10 +35,6 @@ public class Entry {
     private EntryType entryType;
     @OneToMany(cascade = CascadeType.ALL,mappedBy="entry")
     private List<Student> students = new ArrayList<>();
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name="blockid", referencedColumnName="entryid")
-//    private List<Block> blocks;
-    // if unidirectional works make by this using bidrectional//
      @OneToMany(cascade = CascadeType.ALL,mappedBy = "entry")
     private List<Block>blocks = new ArrayList<>();
 }

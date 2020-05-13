@@ -6,8 +6,7 @@ import com.edu.miusched.service.impl.BlockServiceImpl;
 import com.edu.miusched.service.impl.Sectionimpl;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,31 +24,29 @@ public class SectionController {
 
     boolean status = false;
     int i = 0;
-    public JavaMailSender emailSender;
+//    public JavaMailSender emailSender;
 
     Sectionimpl sectionimpl;
     BlockServiceImpl blockimp;
 
     @Autowired
 
-    public SectionController(Sectionimpl sectionimpl, BlockServiceImpl blockimp, JavaMailSender emailSender) {
+    public SectionController(Sectionimpl sectionimpl, BlockServiceImpl blockimp) {
         this.sectionimpl = sectionimpl;
         this.blockimp = blockimp;
-        this.emailSender = emailSender;
     }
 
 
 
     @GetMapping("/admin/section")
     public  String index(Model model) {
-        SimpleMailMessage message = new SimpleMailMessage();
 //        message.setTo("isala@miu.edu");
 //        message.setSubject("SpringTest");
 //        message.setText("sddasfdasf dfsafddfg");
 //        emailSender.send(message);
         Section section = new Section();
         model.addAttribute("sections",sectionimpl.getAllSection());
-        model.addAttribute("blocks",blockimp.findAll());
+        model.addAttribute("blocks",blockimp.getAllBlocks());
         model.addAttribute("section",section);
         status =i==0?false:true;
         model.addAttribute("status",status);
