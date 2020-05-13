@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface EntryDao  extends JpaRepository<Entry,Long> {
     Entry findEntryById(Long id);
     Entry findEntryByEntryName(String name);
+    //Entry findEntryByEntryName
 }
