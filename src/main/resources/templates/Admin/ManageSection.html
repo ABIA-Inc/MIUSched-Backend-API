@@ -2,11 +2,6 @@
 =========================================================
 Material Dashboard - v2.1.2
 =========================================================
-
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
 =========================================================
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
@@ -18,7 +13,7 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Admin  Home Page
+        Material Dashboard by Creative Tim
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <!--     Fonts and icons     -->
@@ -42,46 +37,45 @@ The above copyright notice and this permission notice shall be included in all c
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-            MIUSched
+            Creative Tim
         </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item   ">
-                    <a class="nav-link" href="/admin/admindashboard">
-                        <i class="material-icons">dashboard</i>
-                        <p>Admin Dashboard</p>
+                <li class="nav-item active  ">
+                    <a class="nav-link" href="/admindashboard">
+                        <i class="material-icons">Dashboard</i>
+                        <p>Dashboard</p>
                     </a>
                 </li>
-                <l class="nav-item ">
+                <li class="nav-item ">
                     <a class="nav-link" href="admin/profile">
-                        <i class="material-icons">person</i>
+                        <i class="material-icons">Person</i>
                         <p>User Profile</p>
                     </a>
-                </l>
+                </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/entry">
-                        <i class="material-icons">location_searching</i>
-                        <p>Manage Entry</p>
+                        <i class="material-icons">person</i>
+                        <p>Entry</p>
                     </a>
                 </li>
-
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/block">
-                        <i class="material-icons">language</i>
-                        <p>Manage Block</p>
+                        <i class="material-icons">Manage Block</i>
+                        <p>Notifications</p>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="/admin/section">
-                        <i class="material-icons">layers</i>
+                        <i class="material-icons">language</i>
                         <p>Manage Section</p>
                     </a>
                 </li>
 
                 <li class="nav-item ">
                     <a class="nav-link" href="./rtl.html">
-                        <i class="material-icons">library_books</i>
-                        <p>Manage Course</p>
+                        <i class="material-icons">language</i>
+                        <p>Manage Section</p>
                     </a>
                 </li>
 
@@ -123,7 +117,14 @@ The above copyright notice and this permission notice shall be included in all c
                                     <th class="d-none"></th>
                                     </thead>
                                     <tbody>
+
                                     <tr th:each="section : ${sections}">
+<!--                                        private String sectionName;-->
+<!--                                        private LocalDate startDate;-->
+<!--                                        private LocalDate endDate;-->
+<!--                                        private String classRoom;-->
+<!--                                        private Integer capacity;-->
+                                        <!--/*@thymesVar id="sectionName" type="java"*/-->
                                         <td class="secid d-none"  th:text="${section.id}"></td>
                                         <td th:text="${section.sectionName}" class="secname">1</td>
                                         <td th:text="${section.classRoom}" class="secroom"></td>
@@ -131,7 +132,7 @@ The above copyright notice and this permission notice shall be included in all c
                                         <td th:text="${section.endDate}" class="secend">Dakota Rice</td>
 
                                         <td th:text="${section.capacity}" class="capac"></td>
-                                        <td th:text="${section.block.blockName}" class="blockt"> </td>
+                                        <td th:text="${section.block.blockName}" class="block"> </td>
 <!--                                        <td><button type="button" data-toggle="modal" data-target="#basicExampleModalview" class="btn btn-success">view</button></td>-->
                                         <td><button type="button" data-toggle="modal" data-target="#basicExampleModal" class="btn btn-default">edit</button></td>
                                         <td><a class="btn btn-danger " th:href="@{/admin/section/delete/{id}(id=${section.id})}"  onclick="return confirm('Are you sure?')">delete</a></td>
@@ -146,6 +147,43 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
         </div>
     </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            Creative Tim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://creative-tim.com/presentation">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://blog.creative-tim.com">
+                            Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.creative-tim.com/license">
+                            Licenses
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright float-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                , made with <i class="material-icons">favorite</i> by
+                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            </div>
+        </div>
+    </footer>
+</div>
 </div>
 
 <!--Modla create-->
@@ -160,8 +198,15 @@ The above copyright notice and this permission notice shall be included in all c
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="text-center" style="color: #757575;" th:action="@{/admin/createSection}" th:object="${section}" method="Post">
+            <form class="text-center" style="color: #757575;" th:action="@{/admin/createSection}" th:object="${section}" method="Post">'
                 <div class="modal-body">
+<!--                    private String sectionName;&ndash;&gt;-->
+                    <!--                                        private LocalDate startDate;-->
+                    <!--                                        private LocalDate endDate;-->
+                    <!--                                        private String classRoom;-->
+                    <!--                                        private Integer capacity;-->
+
+                    <!--                    secroom secstrt secend capac-->
                     <input type="text" th:field="*{sectionName}" id="materialSubscriptionFormPassw" class="form-control mb-4 secname" placeholder="Title" onkeypress="return isNumber(event)">
                     <input type="text" th:field="*{classRoom}" id="materialSube" class="form-control mb-4 secroom" placeholder="Room">
                     <input type="date" th:field="*{startDate}" id="materialSubscrd" class="form-control mb-4 secstrt" placeholder="Start date">
@@ -198,24 +243,29 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
             <form class="text-center" th:action="@{/admin/Updatesection}" method="post" th:object="${section}" style="color: #757575;" action="">
                 <div class="modal-body">
-
+<!--                    private String sectionName;-->
+<!--                    private LocalDate startDate;-->
+<!--                    private LocalDate endDate;-->
+<!--                    private String classRoom;-->
+<!--                    private Integer capacity;-->
+<!--                    -->
                     <input type="hidden" class="secid" th:field="*{id}">
+<!--                    secroom secstrt secend capac-->
         <input type="text" th:field="*{sectionName}" id="materialSubscriptionFormPasswords" class="form-control mb-4 secname" placeholder="Title" onkeypress="return isNumber(event)">
         <input type="text" th:field="*{classRoom}" id="materialSubscriptionFormEmaile" class="form-control mb-4 secroom" placeholder="Room">
         <input type="date" th:field="*{startDate}" id="materialSubscriptionFormEmaild" class="form-control mb-4 secstrt" placeholder="Start date">
         <input type="date" th:field="*{endDate}" id="materialSubscriptionFormEmaidl" class="form-control mb-4 secend" placeholder="end date">
         <input type="number" th:field="*{capacity}" max="30" min="2" id="materialSubscriptionFormroom" class="form-control mb-4 capac" placeholder="Capacity">
 
-                    <select th:field="*{block}" class="browser-default custom-select mb-4 blockt">
-
-                        <option disabled selected value=""></option>
+                    <select th:field="*{block}" class="browser-default custom-select mb-4 block">
+                        <option value="" disabled selected> Choose Block</option>
                         <option th:each="block :${blocks}"
                                 th:text="${block.blockName}"
-                                th:value="${block.id}"  >Feedback</option>
+                                th:value="${block.id}" class="block">Feedback</option>
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Save changes</button>
                 </div>
             </form>
@@ -281,7 +331,6 @@ The above copyright notice and this permission notice shall be included in all c
         </ul>
     </div>
 </div>
-
 <!--   Core JS Files   -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/addons/datatables.min.js"></script>
@@ -289,6 +338,25 @@ The above copyright notice and this permission notice shall be included in all c
 <script src="/js/material-dashboard.min.js"></script>
 <script src="/js/bootstrap.js"></script>
 
+<!--<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>-->
+<!--&lt;!&ndash; Plugin for the momentJs  &ndash;&gt;-->
+<!--<script src="../assets/js/plugins/moment.min.js"></script>-->
+<!--&lt;!&ndash;  Plugin for Sweet Alert &ndash;&gt;-->
+<!--<script src="../assets/js/plugins/sweetalert2.js"></script>-->
+<!-- Forms Validations Plugin -->
+<!--<script src="../assets/js/plugins/jquery.validate.min.js"></script>-->
+<!--&lt;!&ndash; Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard &ndash;&gt;-->
+<!--<script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>-->
+<!--&lt;!&ndash;	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select &ndash;&gt;-->
+<!
+<!--  Google Maps Plugin    -->
+<!-- Chartist JS -->
+
+<!--  Notifications Plugin    -->
+
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
 
 
 <script>
@@ -296,7 +364,6 @@ The above copyright notice and this permission notice shall be included in all c
         $('#dtBasicExample').DataTable();
         $('.dataTables_length').addClass('bs-select');
     });
-
     $(document).ready(function() {
 
         //$(".zz-modal").click(function() {
@@ -316,21 +383,16 @@ The above copyright notice and this permission notice shall be included in all c
             var secstrt = _row.find(".secstrt").text();
             var secend = _row.find(".secend").text()
             var capac = _row.find(".capac").text()
-            var block = _row.find(".blockt").text()
-            var secid = _row.find(".secid").text();
-
-            console.log(block);
+            var block = _row.find(".block").text()
+            var secid = _row.find(".secid").text()
+            // console.log(_invoiceAmt, _chequeAmt);
 
             $(this).find(".secid").val(secid);
             $(this).find(".secname").val(_secname);
             $(this).find(".secroom").val(secroom);
             $(this).find(".secstrt").val(secstrt);
             $(this).find(".secend").val(secend);
-            $('select[name="block"]').find("option:contains(' +block +')").attr("selected",true);
-
-            $(".blockt").val($(".blockt" + " option").filter(function() { return this.text == block }).val());
-            // $("p:contains('" + vtxt + "')").addClass("on");
-            // $(this).find(".block").prop();
+            $(this).find(".block").prop("selected",true);
             $(this).find(".capac").val(capac);
         });
 

@@ -19,11 +19,10 @@ public class Admin {
     @OneToOne
     private Account account;
 
+    private String email;
+    private String password;
+
     private int active;
 
-    public Admin(@NotEmpty Address address, Account account) {
-        this.address = address;
-        this.account = account;
-        this.active = 1;
-    }
+
 }
