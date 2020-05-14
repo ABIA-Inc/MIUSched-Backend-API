@@ -7,7 +7,7 @@ import java.util.List;
 public interface SectionService {
 
     Section findSectionById(Long id);
-    void SaveSection(Section section);
+    Section SaveSection(Section section);
     List<Section> getAllSection();
     void deleteSectionById(Long id);
     Section findSectionByClassRoom(String room);

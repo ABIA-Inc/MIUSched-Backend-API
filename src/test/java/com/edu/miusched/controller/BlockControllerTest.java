@@ -33,8 +33,8 @@ public class BlockControllerTest {
     @Mock
     private BlockService blockService;
 
- @Mock
- private EntryService entryService;
+    @Mock
+    private EntryService entryService;
     @InjectMocks
     private BlockController blockController;
 
@@ -45,16 +45,17 @@ public class BlockControllerTest {
                 .standaloneSetup(blockController)
                 .build();
     }
+
     @Test
     public void testListblock() throws Exception {
 
-      Block block=new Block(12l,new Entry(),"testBlock","FEB2020",4,5,LocalDate.of(2021, 10, 13),
-              LocalDate.of(2021, 10, 29),new ArrayList<Section>());
-      Block block1=new Block(14l,new Entry(),"testblock1","AUG2020",13, 12,LocalDate.of(2020, 02, 13),
-              LocalDate.of(2020, 9, 18),new ArrayList<Section>());
+        Block block = new Block(12l, new Entry(), "testBlock", "FEB2020", 4, 5, LocalDate.of(2021, 10, 13),
+                LocalDate.of(2021, 10, 29), new ArrayList<Section>());
+        Block block1 = new Block(14l, new Entry(), "testblock1", "AUG2020", 13, 12, LocalDate.of(2020, 02, 13),
+                LocalDate.of(2020, 9, 18), new ArrayList<Section>());
 
-      List<Block> blocks=new ArrayList<Block>();
-      blocks.add(block);
+        List<Block> blocks = new ArrayList<Block>();
+        blocks.add(block);
         blocks.add(block1);
 
         when(blockService.getAllBlocks()).thenReturn((List) blocks); //need to strip generics to keep Mockito happy.
@@ -65,28 +66,27 @@ public class BlockControllerTest {
                 .andExpect(model().attribute("blocks", hasSize(2)));
 
 
-
     }
 
     @Test
-    public void testDeleteBlockById() throws Exception{
-       long id=1l;
+    public void testDeleteBlockById() throws Exception {
+        long id = 1l;
         mockMvc.perform(get("/admin/block/delete/1"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/admin/block"));
-       verify(blockService, times(1)).deleteBlockById(id);
+        verify(blockService, times(1)).deleteBlockById(id);
     }
 
 
     @Test
-     public void testNewBlockForm() throws Exception {
-        String entryName= "name";
-         verifyNoMoreInteractions(blockService);
+    public void testNewBlockForm() throws Exception {
+        String entryName = "name";
+        verifyNoMoreInteractions(blockService);
 
-          mockMvc.perform(get("/admin/block/"))
-                  .andExpect(status().isOk())
-                  .andExpect(view().name("Admin/ManageBlock"))
-                  .andExpect(model().attribute("newBlock", instanceOf(Block.class)));
+        mockMvc.perform(get("/admin/block/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("Admin/ManageBlock"))
+                .andExpect(model().attribute("newBlock", instanceOf(Block.class)));
 
     }
 
@@ -94,15 +94,15 @@ public class BlockControllerTest {
     public void testadd() throws Exception {
         Long id = 2l;
         String blockName = "JuneBlock";
-        String entryname="FEBRUARY2020";
-        int FPPNum= 49;
+        String entryname = "FEBRUARY2020";
+        int FPPNum = 49;
         int MPPNum = 60;
-        LocalDate startDate= LocalDate.of(2020, 10, 13);
+        LocalDate startDate = LocalDate.of(2020, 10, 13);
         LocalDate endDate = LocalDate.of(2021, 10, 13);
-        Entry entry =  new Entry(1l, "FEBRUARY", 12, 17, LocalDate.of(2020, 10, 13),
+        Entry entry = new Entry(1l, "FEBRUARY", 12, 17, LocalDate.of(2020, 10, 13),
                 LocalDate.of(2021, 10, 13), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>());
 
-        Block block=new Block();
+        Block block = new Block();
         block.setId(id);
         block.setBlockName(blockName);
         block.setFPPNum(FPPNum);
@@ -114,8 +114,6 @@ public class BlockControllerTest {
         when(entryService.findEntryByName(any())).thenReturn(entry);
 
         when(blockService.save(ArgumentMatchers.<Block>any())).thenReturn(block);
-
-
 
 
         //  when(entryService.save(ArgumentMatchers.<Entry>any())).thenReturn(entry);
@@ -131,10 +129,8 @@ public class BlockControllerTest {
                 .param("startDate", String.valueOf(LocalDate.of(2020, 10, 13)))
                 .param("endDate", String.valueOf(LocalDate.of(2021, 10, 13))))
 
-
-                //  .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/admin/block"))
-                //.andExpect(model().attribute("updateBlock", instanceOf(Block.class)))
+
                 .andExpect(model().attribute("newBlock", instanceOf(Block.class)))
                 .andExpect(model().attribute("newBlock", hasProperty("id", is(id))))
                 .andExpect(model().attribute("newBlock", hasProperty("blockName", is(blockName))))
@@ -163,15 +159,15 @@ public class BlockControllerTest {
     public void testUpdate() throws Exception {
         Long id = 2l;
         String blockName = "JuneBlock";
-        String entryname="FEBRUARY2020";
-        int FPPNum= 49;
+        String entryname = "FEBRUARY2020";
+        int FPPNum = 49;
         int MPPNum = 60;
-        LocalDate startDate= LocalDate.of(2020, 10, 13);
+        LocalDate startDate = LocalDate.of(2020, 10, 13);
         LocalDate endDate = LocalDate.of(2021, 10, 13);
-        Entry entry =  new Entry(1l, "FEBRUARY", 12, 17, LocalDate.of(2020, 10, 13),
+        Entry entry = new Entry(1l, "FEBRUARY", 12, 17, LocalDate.of(2020, 10, 13),
                 LocalDate.of(2021, 10, 13), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>());
 
-        Block block=new Block();
+        Block block = new Block();
         block.setId(id);
         block.setBlockName(blockName);
         block.setFPPNum(FPPNum);
@@ -180,30 +176,28 @@ public class BlockControllerTest {
         block.setEntry(entry);
         block.setStartDate(startDate);
         block.setEndDate(endDate);
-       when(entryService.findEntryByName(any())).thenReturn(entry);
+        when(entryService.findEntryByName(any())).thenReturn(entry);
 
         when(blockService.save(ArgumentMatchers.<Block>any())).thenReturn(block);
 
 
-
-
-      //  when(entryService.save(ArgumentMatchers.<Entry>any())).thenReturn(entry);
+        //  when(entryService.save(ArgumentMatchers.<Entry>any())).thenReturn(entry);
 
         mockMvc.perform(post("/admin/block/updateblock")
                 .param("id", "2")
 
                 .param("blockName", "JuneBlock")
-              .param("entryName", "FEBRUARY2020")
+                .param("entryName", "FEBRUARY2020")
                 .param("FPPNum", "49")
                 .param("MPPNum", "60")
-               // .param("entry", entry.toString())
+                // .param("entry", entry.toString())
                 .param("startDate", String.valueOf(LocalDate.of(2020, 10, 13)))
                 .param("endDate", String.valueOf(LocalDate.of(2021, 10, 13))))
 
 
-              //  .andExpect(status().is3xxRedirection())
+                //  .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/admin/block"))
-              //.andExpect(model().attribute("updateBlock", instanceOf(Block.class)))
+                //.andExpect(model().attribute("updateBlock", instanceOf(Block.class)))
                 .andExpect(model().attribute("updateBlock", instanceOf(Block.class)))
                 .andExpect(model().attribute("updateBlock", hasProperty("id", is(id))))
                 .andExpect(model().attribute("updateBlock", hasProperty("blockName", is(blockName))))
@@ -227,4 +221,4 @@ public class BlockControllerTest {
         assertEquals(startDate, boundBlock.getValue().getStartDate());
         assertEquals(endDate, boundBlock.getValue().getEndDate());
     }
-    }
+}
