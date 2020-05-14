@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -19,10 +20,14 @@ public class Faculty {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    @NotEmpty
+    @Value("${firstName:fer}")
     private String firstName;
+    @Value("${firstName:fer}")
     private String LastName;
+    @Value("${firstName:fer}")
     private String email;
+    private String password;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @Value("${courseLoad:0}")
     private Integer courseLoad;
@@ -33,8 +38,20 @@ public class Faculty {
     private Schedule schedule;
     @OneToOne
     private Account account;
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Course> coursePreference = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Block> blockPreference = new ArrayList<>();
+
+
+     public void deleteBlock(Long Id)
+     {
+         for (Block block:blockPreference
+              ) {
+
+             if( block.getId() == Id ) {
+
+             }
+         }
+     }
 }

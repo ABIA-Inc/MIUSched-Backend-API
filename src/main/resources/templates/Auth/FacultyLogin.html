@@ -5,30 +5,30 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/bootstrap.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link href="css/mdb.css" rel="stylesheet" />
+    <link href="/css/mdb.css" rel="stylesheet" />
 </head>
-<body>
+<body style="background-image: url('http://2.bp.blogspot.com/-Tz0_dn5_EIA/VF5ybXjpY-I/AAAAAAAAAbg/oPTWJMr6urs/s1600/codeformatter.png')">
 <!-- Material form login -->
 <div class="container col-4">
-    <div class="card">
+    <div class="card mt-5">
 
-        <h5 class="card-header green white-text text-center py-4">
+        <h5 class="card-header primary-color white-text text-center py-4">
             <strong>Sign in</strong>
         </h5>
 
         <!--Card content-->
         <div class="card-body px-lg-5 pt-0">
 
-            <form class="text-center" method="post" style="color: #757575;" th:action = "@{/admin/login}">
+            <form class="text-center" th:object="${faculty}"  method="post" style="color: #757575;" th:action = "@{/faculty/index}">
 
                 <div class="md-form">
-                    <input th:field="*{email}" type="email" id="materialLoginFormEmail" name="email" class="form-control">
+                    <input th:field="*{email}" type="email" id="materialLoginFormEmail" required name="email" class="form-control">
                     <label for="materialLoginFormEmail">E-mail</label>
                 </div>
                 <div class="md-form">
-                    <input th:field="*{password}" type="password" name="password" id="materialLoginFormPassword" class="form-control">
+                    <input th:field="*{password}" required type="password" name="password" id="materialLoginFormPassword" class="form-control">
                     <label for="materialLoginFormPassword">Password</label>
                 </div>
 
@@ -38,9 +38,13 @@
                 </div>
 
                 <!-- Sign in button -->
-                <button class="btn btn-outline-green btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+                <button class="btn btn-outline-primary btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
 
                 <!-- Register -->
+
+
+
+
             </form>
             <!-- Form -->
 
