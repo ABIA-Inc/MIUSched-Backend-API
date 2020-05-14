@@ -19,9 +19,9 @@ public class Sectionimpl implements SectionService {
     }
 
     @Override
-    public void SaveSection(Section section) {
+    public Section SaveSection(Section section) {
 
-        sectionDao.save(section);
+       return  sectionDao.save(section);
     }
 
     @Override
