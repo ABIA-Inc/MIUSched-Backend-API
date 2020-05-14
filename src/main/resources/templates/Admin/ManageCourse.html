@@ -166,8 +166,10 @@
                 <div class="modal-body">
                     <input type="hidden" class ="secid" th:field="*{id}"/>
                         <div>
-                    <select  class="browser-default custom-select mb-4 secname" id="preRequisite" th:field="*{prerequisites} " multiple>
-                        <option value="" disabled selected> Pre Requisite</option>
+
+
+                    <select  class="mdb-select colorful-select dropdown-primary md-form mb-4 secname" id="preRequisite" th:field="*{prerequisites} " multiple>
+                        <option value="" selected disabled > Pre Requisite</option>
                         <option value="">No prerequisite</option>
                         <option th:each="co :  ${courses}"
                                 th:value="${co.id}"
@@ -221,6 +223,7 @@
                 <input  class = "secid" type="hidden"   th:field="*{id}"/>
                 <div class="modal-body">
                     <div>
+
                         <select  class="browser-default custom-select mb-4 secname" id="upRequisite" th:field="*{prerequisites} " multiple>
                             <option value="" disabled selected> Pre Requisite</option>
                             <option value="">No prerequisite</option>
@@ -262,12 +265,18 @@
 <!--Modal end-->
 
 <!--   Core JS Files   -->
+
+
 <script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.js"></script>
 <script src="/js/addons/datatables.min.js"></script>
 <!--<script src="../assets/js/core/popper.min.js"></script>-->
+
 <script src="/js/mdb.min.js"></script>
+
 <script src="/js/material-dashboard.min.js"></script>
-<script src="/js/bootstrap.js"></script>
+
+
 
 <script>
     $(document).ready(function () {
@@ -302,6 +311,13 @@
 
 
     });
+</script>
+<script>
+
+    $(document).ready(function() {
+    $('.mdb-select').materialSelect();
+});
+
 </script>
 
 

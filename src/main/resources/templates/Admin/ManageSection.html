@@ -105,6 +105,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="card">
                             <div class="card-header card-header-success">
                                 <h5 class="card-title text-center">Section List</h5>
+<!--                                <a class="btn btn-info" onclick="toastr.info('Hi! I am info message.');">Info message</a>-->
                                 <p class="card-category "></p>
                             </div>
                             <div class="card-body table-responsive">
@@ -116,11 +117,11 @@ The above copyright notice and this permission notice shall be included in all c
                                     <th>EndDate</th>
                                     <th>Capacity</th>
                                     <th>Block</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
                                     <th class="d-none"></th>
+                                    <th></th>
+                                    <th></th>
+
+
                                     </thead>
                                     <tbody>
                                     <tr th:each="section : ${sections}">
@@ -152,6 +153,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 <div class="modal fade" id="modalcreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
+
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -326,7 +329,7 @@ The above copyright notice and this permission notice shall be included in all c
             $(this).find(".secroom").val(secroom);
             $(this).find(".secstrt").val(secstrt);
             $(this).find(".secend").val(secend);
-            $('select[name="block"]').find("option:contains(' +block +')").attr("selected",true);
+            // $('select[name="block"]').find("option:contains(' +block +')").attr("selected",true);
 
             $(".blockt").val($(".blockt" + " option").filter(function() { return this.text == block }).val());
             // $("p:contains('" + vtxt + "')").addClass("on");

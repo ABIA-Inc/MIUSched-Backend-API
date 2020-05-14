@@ -2,6 +2,7 @@ package com.edu.miusched.controller;
 
 import com.edu.miusched.domain.Block;
 import com.edu.miusched.domain.Section;
+import com.edu.miusched.service.SectionService;
 import com.edu.miusched.service.impl.BlockServiceImpl;
 import com.edu.miusched.service.impl.Sectionimpl;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
@@ -26,7 +27,7 @@ public class SectionController {
     int i = 0;
 //    public JavaMailSender emailSender;
 
-    Sectionimpl sectionimpl;
+    SectionService sectionimpl;
     BlockServiceImpl blockimp;
 
     @Autowired
@@ -87,6 +88,7 @@ public class SectionController {
 
             new IllegalArgumentException("Section not found");
         }
+
        sectionimpl.deleteSectionById(id);
         return "redirect:/admin/section";
     }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="css/mdb.css" rel="stylesheet" />
+</head>
+<body>
+<!-- Material form login -->
+<div class="container col-4">
+<div class="card">
+
+    <h5 class="card-header green white-text text-center py-4">
+        <strong>Sign in</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+
+        <form class="text-center" th:object="${admin}"  method="post" style="color: #757575;" th:action = "@{/admin/login}">
+
+            <div class="md-form">
+                <input th:field="*{email}" type="email" id="materialLoginFormEmail" name="email" class="form-control">
+                <label for="materialLoginFormEmail">E-mail</label>
+            </div>
+            <div class="md-form">
+                <input th:field="*{password}" type="password" name="password" id="materialLoginFormPassword" class="form-control">
+                <label for="materialLoginFormPassword">Password</label>
+            </div>
+
+            <div class="d-flex justify-content-around">
+                <div>
+                </div>
+            </div>
+
+            <!-- Sign in button -->
+            <button class="btn btn-outline-green btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+
+            <!-- Register -->
+
+
+
+
+        </form>
+        <!-- Form -->
+
+    </div>
+
+</div>
+</div>
+<!-- Material form login -->
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/mdb.min.js"></script>
+</body>
+</html>

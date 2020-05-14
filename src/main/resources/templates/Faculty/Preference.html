@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>MUMSCHED</title>
 
   <!-- Custom fonts for this template-->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -34,7 +34,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">MIUSCHED <sup></sup></div>
       </a>
 
       <!-- Divider -->
@@ -55,7 +55,13 @@
       <li class="nav-item ">
         <a class="nav-link" href="dashsdaboard.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>View Sections</span></a>
+          <span>View Scheduled Sections</span></a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="/faculty/logout">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>log out</span></a>
       </li>
 
 
@@ -158,16 +164,27 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+          <div class="col-5">
+            <div class="primary-color"><p class="white-text text-center"> Faculty Info</p></div>
+            <label> First Name :</label>
+            <label th:text="${preference.getFirstName()}">{}</label>
+            <span class="d-block"></span>
+            <label > Last Name : </label>
+            <span><label th:text="${preference.lastName}">{}</label></span>
+            <span class="d-block"></span>
+            <label>Courses : </label>
+            <label th:text="${preference.getCoursePreference().size()}">{}</label>
+          </div>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center mb-4">
             <h1 class="h3 mb-0 text-gray-800 mx-auto">Current Preference</h1>
-            <button class="btn btn-primary ml-3" data-target="#blockPreference" data-toggle="modal"> Set Block preference </button>
-            <button class="btn btn-success ml-2"> Set Course </button>
-<!--            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
+            <button class="btn btn-primary btn-md ml-3" data-target="#blockPreference" data-toggle="modal"> Set Block preference </button>
+            <button class="btn btn-success btn-md ml-2 pref" data-target="#CoursePreference" data-toggle="modal"> Set Course </button>
           </div>
 
           <!-- Content Row -->
           <div class="row">
+
 
             <div class="col-lg-10 col-md-12 mx-auto mt-2">
               <div class="card">
@@ -186,20 +203,54 @@
                     <th>Interval block</th>
                     <th>BLocks</th>
                     <th></th>
-                    <th></th>
+
                     </thead>
                     <tbody>
-                    <tr >
-                      </td>
+                    <tr>
                       <td th:text="${preference.getStartDate()}"></td>
-
                       <td th:text="${preference.getIntervalBetweenBlocks()}"></td>
                       <td ><a  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#BlockModal">View Blocks</a></td>
-
-                      <td >
-                        <a class="btn btn-dark-green btn-sm" >Edit</a>
-                      </td>
                       <td ><a class="btn btn-danger  btn-sm">Delete</a> </td>
+
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row mt-5">
+
+
+            <div class="col-lg-10 col-md-12 mx-auto mt-2">
+              <div class="card">
+                <div class="card-header bg-gradient-info">
+                  <h5 class="card-title text-center text-white">Course Standings</h5>
+
+                  <p class="card-category "></p>
+                </div>
+                <div class="card-body table-responsive">
+                  <table id="dtBasicExample" class="table table-striped" cellspacing="12">
+                    <!--                    <thead th:if=""></thead>-->
+                    <thead class="text-primary">
+
+                    <th>Title</th>
+                    <th>Level</th>
+                    <th>Max Student</th>
+                    <th>End Data</th>
+                    </thead>
+
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <tr  th:each=" course :${preference.getCoursePreference()}">
+                      <td th:text="${course.getCourseTitle()}"></td>
+                      <td th:text="${course.getLevel()}"></td>
+                      <td th:text="${course.getMaxStudent()}"></td>
+                      <td th:text="${course.getCredits()}"></td>
+
+                      <td ><a class="btn btn-danger btn-sm" th:href="${'/faculty/deleteCourse/'+ course.id}" onclick="return confirm('Are you sure?')"> delete</a></td>
 
                     </tr>
                     </tbody>
@@ -252,7 +303,46 @@
   </a>
 
   <!-- Logout Modal-->
+  <div class="modal fade" id="CoursePreference" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       aria-hidden="true">
 
+    <!-- Change class .modal-sm to change the size of the modal -->
+    <div class="modal-dialog " role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100" id="myModalLabel">Set Course Preference</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="text-center"  method="post" th:action="@{/faculty/setCourse}" th:object="${faculty}"  style="color: #757575;" >
+            <input type="text" hidden class="prefid"   th:field="*{id}"  value="1">
+            <div class="modal-body">
+
+              <select th:field="*{coursePreference}" class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+                <option selected disabled value="">Choose Courses</option>
+                <option th:each=" course : ${courses}"
+                        th:value="${course.id}" th:text="${course.getCourseTitle()}">Choose your country</option>
+
+              </select>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<!--Course Preference Modal-->
+
+<!--  End Modal-->
 <!--  // Block Modal-->
 
   <div class="modal fade" id="BlockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -278,8 +368,11 @@
             <th>Start Date</th>
             <th>End Data</th>
             </thead>
+<!--            th:if="${preference.getBlockPreference().size()!=0}"-->
+<!--            th:if="${preference.getBlockPreference().size()==0}-->
             <tbody>
-            <tr th:each=" block :${preference.getBlockPreference()}">
+<!--            <tr > No Block Preference Setted</tr>-->
+            <tr  th:each=" block :${preference.getBlockPreference()}">
             <td th:text="${block.getBlockName()}"></td>
               <td th:text="${block.entry.getEntryName()}"></td>
               <td th:text="${block.getStartDate()}"></td>
@@ -314,24 +407,26 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="text-center"  method="post"  style="color: #757575;" action="">
+          <form class="text-center"  method="post" th:action="@{/faculty/setBlock}" th:object="${faculty}"  style="color: #757575;" >
 
+            <input type="text" hidden class="prefid"   th:field="*{id}"  value="1">
             <div class="modal-body">
 
-              <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
-                <option disabled>Choose Blocks</option>
+              <select th:field="*{blockPreference}" class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+                <option selected disabled value="">Choose Blocks</option>
                 <option th:each=" block : ${blocks}"
                         th:value="${block.id}" th:text="${block.blockName}">Choose your country</option>
+
               </select>
 
 
             <div class="md-form">
-                <input type="text" id="inputMDEx" class="form-control">
+                <input th:field="*{intervalBetweenBlocks}" type="number" id="inputMDEx" class="form-control">
                 <label for="inputMDEx">Interval Block</label>
             </div>
               <div class="md-form">
-                <input type="text" id="inputMDEx" class="form-control">
-                <label for="inputMDEx"></label>
+                <input th:field="*{startDate}" type="date" id="inputMDEdx" class="form-control">
+                <label for="inputMDEx">Start Date</label>
               </div>
 
 
@@ -339,7 +434,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
         </div>
             </div>
           </form>
@@ -355,12 +450,16 @@
 <script src="/js/mdb.min.js"></script>
   <!-- Custom scripts for all pages-->
   <script src="/facultyStyle/js/sb-admin-2.js"></script>
+
     <script >
 
       $(document).ready(function() {
         $('.mdb-select').materialSelect();
       });
+
+
     </script>
+
 
 
 </body>
