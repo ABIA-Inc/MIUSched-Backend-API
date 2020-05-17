@@ -49,10 +49,13 @@ public class BlockControllerTest {
     @Test
     public void testListblock() throws Exception {
 
-        Block block = new Block(12l, new Entry(), "testBlock", "FEB2020", 4, 5, LocalDate.of(2021, 10, 13),
-                LocalDate.of(2021, 10, 29), new ArrayList<Section>());
-        Block block1 = new Block(14l, new Entry(), "testblock1", "AUG2020", 13, 12, LocalDate.of(2020, 02, 13),
-                LocalDate.of(2020, 9, 18), new ArrayList<Section>());
+//        Block block = new Block(12l, new Entry(), "testBlock", "FEB2020", 4, 5, LocalDate.of(2021, 10, 13),
+//                LocalDate.of(2021, 10, 29), new ArrayList<Section>());
+//        Block block1 = new Block(14l, new Entry(), "testblock1", "AUG2020", 13, 12, LocalDate.of(2020, 02, 13),
+//                LocalDate.of(2020, 9, 18), new ArrayList<Section>());
+
+        Block block = new Block();
+        Block block1 = new Block();
 
         List<Block> blocks = new ArrayList<Block>();
         blocks.add(block);
@@ -100,7 +103,7 @@ public class BlockControllerTest {
         LocalDate startDate = LocalDate.of(2020, 10, 13);
         LocalDate endDate = LocalDate.of(2021, 10, 13);
         Entry entry = new Entry(1l, "FEBRUARY", 12, 17, LocalDate.of(2020, 10, 13),
-                LocalDate.of(2021, 10, 13), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>());
+                LocalDate.of(2021, 10, 13), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>(), new Schedule());
 
         Block block = new Block();
         block.setId(id);
@@ -165,7 +168,7 @@ public class BlockControllerTest {
         LocalDate startDate = LocalDate.of(2020, 10, 13);
         LocalDate endDate = LocalDate.of(2021, 10, 13);
         Entry entry = new Entry(1l, "FEBRUARY", 12, 17, LocalDate.of(2020, 10, 13),
-                LocalDate.of(2021, 10, 13), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>());
+                LocalDate.of(2021, 10, 13), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>(), new Schedule());
 
         Block block = new Block();
         block.setId(id);

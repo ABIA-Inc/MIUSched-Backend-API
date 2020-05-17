@@ -40,6 +40,14 @@ public class BlockController {
         return "Admin/ManageBlock";
     }
 
+    @RequestMapping(value = "/admin/blocks", method = RequestMethod.GET)
+    public String listBlocks(Model model) {
+
+        model.addAttribute("blocks", blockService.getAllBlocks());
+
+        return "Admin/ManageBlock";
+    }
+
     @RequestMapping(value = "/admin/block/addblock", method = RequestMethod.POST)
     public String addBlock(@ModelAttribute("newBlock") Block newBlock, Model model){
 
@@ -50,14 +58,6 @@ public class BlockController {
         blockService.save(newBlock);
 
         return "redirect:/admin/block";
-    }
-
-        @RequestMapping(value="/admin/blocks", method = RequestMethod.GET)
-    public String listBlocks(Model model) {
-
-        model.addAttribute("blocks", blockService.getAllBlocks());
-
-        return "Admin/ManageBlock";
     }
 
     @RequestMapping(value = "/admin/block/edit/{id}", method = RequestMethod.GET)

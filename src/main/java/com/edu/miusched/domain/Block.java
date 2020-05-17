@@ -1,8 +1,6 @@
 package com.edu.miusched.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 
@@ -12,7 +10,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+//@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -37,5 +37,8 @@ public class Block {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
     private List<Section> sections = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Schedule schedule;
 
 }
