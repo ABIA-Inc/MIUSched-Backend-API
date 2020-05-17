@@ -28,8 +28,8 @@ public class Course {
     @ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
     //@OneToMany(fetch = FetchType.LAZY)
     private List<Course> prerequisites = new ArrayList<>();
-//    @OneToMany(mappedBy="course")
-//    private List<Section> sections;
+    @OneToMany(mappedBy="course")
+    private List<Section> sections;
 @Digits(integer=10, fraction=0, message = "{invalidNumber.message}")
 private int level;
     public Boolean hasPreRequisite() {
