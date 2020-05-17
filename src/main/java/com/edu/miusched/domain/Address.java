@@ -23,6 +23,8 @@ public class Address {
 
     @OneToOne(mappedBy = "address")
     private Admin admin;
+    @OneToOne(mappedBy = "address")
+    private Student student;
 
 
 }

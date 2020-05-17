@@ -42,15 +42,15 @@
                         <p> Admin Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="admin/profile">
-                        <i class="material-icons">Person</i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
+<!--                <li class="nav-item ">-->
+<!--                    <a class="nav-link" href="admin/profile">-->
+<!--                        <i class="material-icons">Person</i>-->
+<!--                        <p>User Profile</p>-->
+<!--                    </a>-->
+<!--                </li>-->
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/entry">
-                        <i class="material-icons">language</i>
+                        <i class="material-icons">location_searching</i>
                         <p>Manage Entry</p>
                     </a>
                 </li>
@@ -63,19 +63,24 @@
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="/admin/section">
-                        <i class="material-icons">language</i>
+                        <i class="material-icons">layers</i>
                         <p>Manage Section</p>
                     </a>
                 </li>
 
 
-                <li class="nav-item active  ">
+                <li class="nav-item active">
                     <a class="nav-link" href="/admin/course">
-                        <i class="material-icons">language</i>
+                        <i class="material-icons">library_books</i>
                         <p>Manage Course</p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/student">
+                        <i class="material-icons">library_books</i>
+                        <p>Manage Student</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -98,6 +103,8 @@
                                 <h5 class="card-title text-center">Course Information</h5>
                                 <p class="card-category "></p>
                             </div>
+<!--                    <h2 th:if="${response.success} == true"  th:text ="${response.msg}"></h2>-->
+
                             <div class="card-body table-responsive">
                                 <table class="table table-hover" id="dtBasicExample">
                                     <thead class="text-success">
@@ -115,6 +122,7 @@
                                     <!--                                    <th>Edit Entry</th>-->
                                     <!--                                    <th>Delete Entry</th>-->
                                     </thead>
+
                                     <tbody>
                                     <tr th:each="course : ${courses}">
                                         <td style=" display: none" th:text="${course.id}" class="secid"></td>
@@ -261,6 +269,7 @@
 </div>
 
 
+
 <!--=============================-->
 <!--Modal end-->
 
@@ -292,7 +301,7 @@
             // console.log(_button, _button.parents("tr"));
             var _row = _button.parents("tr");
             var secid = _row.find(".secid").text();
-            var _secname = _row.find(".secname").text();
+            var secname = _row.find(".secname").text();
              var secnum1 = _row.find(".secnum1").text();
             var secnum2 = _row.find(".secnum2").text();
             var level = _row.find(".level").text();
@@ -300,12 +309,14 @@
             var maxs= _row.find(".maxs").text();
 
             $(this).find(".secid").val(secid);
-            $(this).find(".secname").val(_secname);
+            $(this).find(".secname").val(secname);
              $(this).find(".secnum1").val(secnum1);
             $(this).find(".secnum2").val(secnum2);
             $(this).find(".level").val(level);
             $(this).find(".credit").val(credit);
             $(this).find(".maxs").val(maxs);
+            $('select[name="secname"]').find("option:contains(' +secname +')").attr("selected",true);
+            $(".secname").val($(".secname" + " option").filter(function() { return this.text == secname }).val());
 
         });
 
