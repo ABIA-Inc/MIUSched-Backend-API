@@ -2,7 +2,7 @@
 package com.edu.miusched.controller;
 
 
-import com.edu.miusched.dao.scheduleDao;
+//import com.edu.miusched.dao.scheduleDao;
 import com.edu.miusched.domain.*;
 import com.edu.miusched.service.BlockService;
 import com.edu.miusched.service.CourseService;
@@ -26,7 +26,7 @@ public class facultyController {
     Faculty faculty = new Faculty();
     FacultyService facultyService;
 
-    scheduleDao scheduleDao;
+    //scheduleDao scheduleDao;
 
     BlockService blockService;
 
@@ -34,10 +34,10 @@ public class facultyController {
     CourseService courseSErvice;
 
     @Autowired
-    public facultyController(FacultyServiceImpl facultyService, scheduleDao scheduleDao,
+    public facultyController(FacultyServiceImpl facultyService, //scheduleDao scheduleDao,
                              BlockService blockService, CourseService courseSErvice) {
         this.blockService = blockService;
-        this.scheduleDao = scheduleDao;
+        //this.scheduleDao = scheduleDao;
         this.facultyService = facultyService;
         this.courseSErvice = courseSErvice;
 

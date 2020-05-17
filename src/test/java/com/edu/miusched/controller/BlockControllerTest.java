@@ -111,7 +111,7 @@ public class BlockControllerTest {
         block.setEntry(entry);
         block.setStartDate(startDate);
         block.setEndDate(endDate);
-        when(entryService.findEntryByName(any())).thenReturn(entry);
+        //when(entryService.findEntryByName(any())).thenReturn(entry);
 
         when(blockService.save(ArgumentMatchers.<Block>any())).thenReturn(block);
 

@@ -18,7 +18,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+    Admin Dashboard
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -40,56 +40,53 @@ The above copyright notice and this permission notice shall be included in all c
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+          MIUSched
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="./Admindashboard.html">
+            <a class="nav-link" href="/admin/admindashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./tables.html">
-              <i class="material-icons">Block</i>
-              <p>Table List</p>
-            </a>
-          </li>
 <!--          <li class="nav-item ">-->
-<!--            <a class="nav-link" href="./typography.html">-->
-<!--              <i class="material-icons">library_books</i>-->
-<!--              <p>Typography</p>-->
-<!--            </a>-->
-<!--          </li>-->
-<!--          <li class="nav-item ">-->
-<!--            <a class="nav-link" href="./icons.html">-->
-<!--              <i class="material-icons">bubble_chart</i>-->
-<!--              <p>Icons</p>-->
-<!--            </a>-->
-<!--          </li>-->
-<!--          <li class="nav-item ">-->
-<!--            <a class="nav-link" href="./map.html">-->
-<!--              <i class="material-icons">location_ons</i>-->
-<!--              <p>Maps</p>-->
+<!--            <a class="nav-link" href="./user.html">-->
+<!--              <i class="material-icons">person</i>-->
+<!--              <p>User Profile</p>-->
 <!--            </a>-->
 <!--          </li>-->
           <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
+            <a class="nav-link" href="/admin/entry">
+              <i class="material-icons">location_searching</i>
+              <p>Manage Entry</p>
             </a>
           </li>
+
           <li class="nav-item ">
-            <a class="nav-link" href="./rtl.html">
+            <a class="nav-link" href="/admin/block">
               <i class="material-icons">language</i>
-              <p>RTL Support</p>
+              <p>Manage Block</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin/section">
+              <i class="material-icons">layers</i>
+              <p>Manage Section</p>
+            </a>
+          </li>
+
+
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin/course">
+              <i class="material-icons">library_books</i>
+              <p>Manage Course</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/student">
+              <i class="material-icons">library_books</i>
+              <p>Manage Student</p>
             </a>
           </li>
 
@@ -146,6 +143,18 @@ The above copyright notice and this permission notice shall be included in all c
                   </div>
                   <p class="card-category h4" >Total Courses</p>
                   <h3 class="card-title" th:text="${course}">g</h3>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">content_copy</i>
+                  </div>
+                  <p class="card-category h4" >Total Number of Students</p>
+                  <h3 class="card-title" th:text="${student}">g</h3>
                 </div>
 
               </div>

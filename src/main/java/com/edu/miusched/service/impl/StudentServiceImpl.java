@@ -7,14 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
     StudentDao studentDao;
+
     @Override
-    public void save(Student student) {
-        studentDao.save(student);
+    public Student save(Student student) {
+        return studentDao.save(student);
     }
 
     @Override
@@ -33,7 +35,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudentById(Long id) { studentDao.deleteById(id);  }
+    public void deleteStudentById(Long id) {
+        studentDao.deleteById(id);
+    }
 
     @Override
     public void deleteStudentByStudentId(String studentId) {
