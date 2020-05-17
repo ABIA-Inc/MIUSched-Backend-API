@@ -1,72 +1,82 @@
 package com.edu.miusched.controller;
 
 
+import com.edu.miusched.domain.Section;
 import com.edu.miusched.domain.Student;
+import com.edu.miusched.service.EntryService;
+import com.edu.miusched.service.SectionService;
 import com.edu.miusched.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class StudentController {
+    @Autowired
+    SectionService sectionService;
 
     @Autowired
     StudentService studentService;
+    @Autowired
+    EntryService entryService;
 
-    @RequestMapping(value = "/new")
-    public String studentRegForm(@ModelAttribute("newStudent") Student student, Model model) {
-        model.addAttribute("newStudent", student);
-        return "Studentregform";
-    }
 
-    @RequestMapping(value = "/addnewstudent", method = RequestMethod.POST)
-    public String registerStudent(@ModelAttribute("newstudent") Student student, Model model) {
-        studentService.save(student);
-//        model.addAttribute(studentService.getStudentByEmail(student.getEmail()));
+    private Student student;
 
-        return "addsuccess";
-    }
-
+    private Section section;
     @RequestMapping("/student/view/{id}")
     public String getProduct(@PathVariable Long id, Model model) {
 
         model.addAttribute("student", studentService.getStudentById(id));
-
-        return "display";
+        return "student/studenthome";
     }
 
-    @RequestMapping("/adminPage")
-    public String listProducts(Model model) {
 
-        model.addAttribute("students", studentService.getAllStudents());
-
-        return "Admindashboard";
+    @RequestMapping(value = "/student/studentprofile/id", method = RequestMethod.GET)
+    public String studentProfile(@PathVariable Long id, Model model) {
+        Student student = studentService.getStudentById(id);
+        model.addAttribute("student", student);
+        model.addAttribute("entriy", entryService.findByEntryId(student.getId()));
+        model.addAttribute("sections", student.getSections());
+        return "student/studenthome";
     }
 
-    @RequestMapping("/students/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        studentService.deleteStudentById(id);
 
-        return "redirect:/students";
-    }
+    @RequestMapping(value = "/student/register/{id}", method = RequestMethod.POST)
+    public String registerForSection(@ModelAttribute("section") Section section, Model model,
+                                     @PathVariable Long id) throws Exception {
+        section = sectionService.findSectionById(id);
+        Student student = studentService.getStudentById(id);
 
-    @RequestMapping(value = "/student/edit/{id}",method = RequestMethod.GET)
-    public String edit(@PathVariable Long id, ModelMap model){
-        model.addAttribute("student", studentService.getStudentById(id));
-        return "edit";
-    }
-    @RequestMapping(value="/update",method=RequestMethod.POST)
-    public String saveUpdate (@ModelAttribute("student") Student studentupdate, BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            return "edit";
-        }
-        studentService.save(studentupdate);
-        return "redirect:/students";
+
+        if (student.getSections() == null)
+            student.setSections((List<Section>) new HashSet<Section>());
+
+        student.getSections().add(section);
+        studentService.save(student);
+
+        return "redirect:/student/studentprofile";
+
     }
 }
+/*        private boolean isPrereqChosen(Section section, Student student) {
+            if( section.getCourse().hasPreRequisite() ){
+                List<Section> l = sectionService.findByCourseAndEnrolledStudents(section.getCourse().getPreRequisite(), student);
+                if( l == null || l.size() == 0 ) {
+                    return false;
+                }
+            }
+
+            return true;
+        }*/
+
+
+

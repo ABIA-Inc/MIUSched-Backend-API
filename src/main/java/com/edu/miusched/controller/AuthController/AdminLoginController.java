@@ -23,12 +23,14 @@ public class AdminLoginController {
     BlockService blockService;
     SectionService sectionService;
     CourseService courseService;
+    StudentService studentService;
     @Autowired
-    public AdminLoginController(EntryService entryService, BlockService blockService, SectionService sectionService, CourseService courseService) {
+    public AdminLoginController(EntryService entryService, BlockService blockService, SectionService sectionService, CourseService courseService, StudentService studentService) {
         this.entryService = entryService;
         this.blockService = blockService;
         this.sectionService = sectionService;
         this.courseService = courseService;
+        this.studentService =studentService;
     }
 
 
@@ -55,6 +57,7 @@ public class AdminLoginController {
         model.addAttribute("block",blockService.getAllBlocks().size());
         model.addAttribute("section",sectionService.getAllSection().size());
         model.addAttribute("course",courseService.findAll().size());
+        model.addAttribute("student",studentService.getAllStudents().size());
 
 
         return "/Admin/Admindashboard";
