@@ -37,4 +37,7 @@ public class Entry {
     private List<Student> students = new ArrayList<>();
      @OneToMany(cascade = CascadeType.ALL,mappedBy = "entry")
     private List<Block>blocks = new ArrayList<>();
+
+     @OneToOne()
+    private Schedule schedule;
 }

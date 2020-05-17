@@ -3,10 +3,7 @@ package com.edu.miusched.controller;
 
 
 
-import com.edu.miusched.domain.Block;
-import com.edu.miusched.domain.Entry;
-import com.edu.miusched.domain.EntryType;
-import com.edu.miusched.domain.Student;
+import com.edu.miusched.domain.*;
 import com.edu.miusched.service.EntryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
@@ -33,7 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 public class EntryControllerTest {
 
@@ -61,9 +58,9 @@ public class EntryControllerTest {
     public void testListentry() throws Exception {
         ObjectMapper om = new ObjectMapper();
        Entry entry =  new Entry(1l, "February", 12, 17, LocalDate.of(2020, 10, 13),
-               LocalDate.of(2021, 10, 13), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>());
+               LocalDate.of(2021, 10, 13), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>(), new Schedule());
         Entry entry1 =  new Entry(2l, "August", 12, 17, LocalDate.of(2020, 02, 13),
-                LocalDate.of(2020, 9, 18), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>());
+                LocalDate.of(2020, 9, 18), EntryType.AUGUST, new ArrayList<Student>(), new ArrayList<Block>(), new Schedule());
         List<Entry> entries = new ArrayList<>();
         entries.add(entry);
         entries.add(entry1);

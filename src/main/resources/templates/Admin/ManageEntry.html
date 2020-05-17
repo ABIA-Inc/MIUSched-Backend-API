@@ -79,6 +79,12 @@
                         <p>Manage Student</p>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/admin/schedule">
+                        <i class="material-icons">Manage Schedule</i>
+                        <p>Manage Schedule</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -164,7 +170,7 @@
                   <input type="hidden" th:field="*{id}"/>
 
                     <select  class="browser-default custom-select mb-4 secname" name="entryType">
-                        <option value="" disabled selected> Entry Name</option>
+                        <option value="" disabled selected> Entry Type</option>
                         <option th:each="entryName : ${T(com.edu.miusched.domain.EntryType).values()}"
                                 th:value="${entryName}" th:text="${entryName}"></option>
                     </select>

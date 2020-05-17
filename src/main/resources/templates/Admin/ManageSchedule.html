@@ -1,0 +1,464 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>
+        Admin Home Page
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+    <link href=" /css/material-dashboard.min.css?v=2.1.2" rel="stylesheet"/>
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="/css/demo.css" rel="stylesheet"/>
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <!--
+          Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+          Tip 2: you can also add an image using data-image tag
+      -->
+        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+            MIUSched
+        </a></div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/admindashboard">
+                        <i class="material-icons">Admin Dashboard</i>
+                        <p>Admin Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/admin/entry">
+                        <i class="material-icons">Manage Entry</i>
+                        <p>Manage Entry</p>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="/admin/block">
+                        <i class="material-icons">Manage Block</i>
+                        <p>Manage Block</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/admin/section">
+                        <i class="material-icons">Manage Section</i>
+                        <p>Manage Section</p>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="/admin/course">
+                        <i class="material-icons">Manage Course</i>
+                        <p>Manage Course</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/admin/student">
+                        <i class="material-icons">library_books</i>
+                        <p>Manage Student</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin/schedule">
+                        <i class="material-icons">Manage Schedule</i>
+                        <p>Manage Schedule</p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+<!--    <var>scheduleID</var>-->
+<!--    <script>-->
+<!--        var scheduleID = 1;-->
+<!--    </script>-->
+
+    <div class="main-panel">
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class=" col-4 ml-5"><h2 class="green-text">Create Schedule</h2>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicExampleModal">
+                        Create Schedule
+                    </button>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-10 col-md-12 mx-auto mt-2">
+                        <div class="card">
+                            <div class="card-header card-header-success card-div-success-cum">
+                                <h5 class="card-title text-center">Schedule Information</h5>
+                                <p class="card-category "></p>
+                            </div>
+<!--                            <div class="card-header card-header-warning card-div-success-cum">-->
+<!--                                <p class="card-subtitle "></p>-->
+<!--&lt;!&ndash;                                <h5 class="card-subtitle text-left" th:text="'Entry Name: ' + ${entryName}"></h5>&ndash;&gt;-->
+<!--                                <h5 class="card-subtitle text-left" th:text="'Entry Name: ' + ${newSchedule.entry.entryName}"></h5>-->
+<!--&lt;!&ndash;                                <h5 class="card-subtitle text-left" >Entry Name: </h5>&ndash;&gt;-->
+<!--                                <p class="card-subtitle ">  </p>-->
+<!--                                <h5 class="card-subtitle text-left" th:text="'Schedule Status: ' + ${newSchedule.scheduleStatus.name()}"></h5>-->
+<!--&lt;!&ndash;                                <h5 class="card-subtitle text-left">Schedule Status: </h5>&ndash;&gt;-->
+<!--                                <p class="card-subtitle "></p>-->
+<!--                            </div>-->
+
+<!--                            th:if="${not #lists.isEmpty(blocks)}"-->
+
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-success">
+                                    <th>Entry Name</th>
+                                    <th>Schedule Status</th>
+                                    <th>Block List</th>
+<!--                                    <th>Number of Blocks</th>-->
+<!--                                    <th>Start Date</th>-->
+<!--                                    <th>End Date</th>-->
+                                    <th>Edit Schedule</th>
+                                    <th>Add Block</th>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="schedule, schedStat : ${schedules}">
+                                        <td th:text="${schedule.id}" style="display:none" class="scheduleid"></td>
+                                        <td th:text="${schedule.entry.entryName}" class="entryname"></td>
+<!--                                        <td th:text="${schedule.getScheduleStatus.name()}" class="schedulestatus"></td>-->
+                                        <td th:text="${schedule.scheduleStatus.name()}" class="schedulestatus"></td>
+                                        <td class="blocklist">
+                                            <p th:each="block: ${schedStat.current.blockList}">
+<!--                                                <span><hr></span>-->
+                                                <span th:text="${block.blockName}"></span>
+<!--                                                <span><hr></span>-->
+                                            </p>
+<!--                                            <p th:each="block: ${schedule.blocks}">-->
+<!--                                                <span><hr></span>-->
+<!--                                                <span th:text="${block.blockName}"></span>-->
+<!--                                                <span><hr></span>-->
+<!--                                            </p>-->
+                                        </td>
+<!--                                        <td th:text="${schedule.blocks.size()}" class="numblocks"></td>-->
+<!--                                        <td th:text="${block.startDate}" class="startdate"></td>-->
+<!--                                        <td th:text="${block.endDate}" class="enddate"></td>-->
+                                        <td><a  data-toggle="modal" data-target="#updatexampleModal" th:href="${'/admin/schedule/edit/' + schedule.id}" class = "btn btn-default">Edit</a> </td>
+<!--                                        onclick="return confirm('Are you sure?')" addBExampleModal-->
+<!--                                        <td><a  style="color: blue" data-toggle="modal" data-target="#addBExampleModal"  th:href="${/admin/schedule/addblock/}" class = "btn btn-success">Add Block</a> </td>-->
+                                        <td><a style="color: #0000ff" data-toggle="modal" data-target="#addexampleModal" th:href="${'/admin/schedule/addblock/' + schedule.id}" class = "btn btn-success">Add Block</a>  </td>
+<!--                                        <td><a  style="color: blue" data-toggle="modal" data-target="#addexampleModal"  class = "btn btn-success"> Add Block</a> </td>-->
+<!--                                        <td><a  style="color: blue" data-toggle="modal" data-target="#addexampleModal"  class = "btn btn-success"> <script>document.getElementById('AddBlock').action = '/admin/schedule/addblock/' + schedule.id;</script> Add Block</a></td>-->
+<!--                                        <td><a  style="color: blue" data-toggle="modal" data-target="#addexampleModal"  class = "btn btn-success"> Add Block </a></td>-->
+<!--                                        document.getElementById('AddBlock').action = '/admin/schedule/addblock/' + schedule.id;-->
+<!--                                        <script>document.getElementById('AddBlock').action = '/admin/schedule/addblock/' + schedule.id;</script>-->
+<!--                                        <script>${scheduleID = schedule.id} console.log(scheduleID)</script>-->
+<!--                                        <script th:inline="javascript">/*[+document.getElementById('AddBlock').action = '/admin/schedule/addblock/' + [[${schedule.id}]];+]*/</script>-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modlas-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Schedule</h5>
+                <button type="button" class="cancel" data-dismiss="modal" aria-label="Cancel">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#" th:action="@{/admin/schedule/addschedule}" th:object="${newSchedule}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="modal-body">
+                    <select  class="browser-default custom-select mb-4 entryname" name="entryName">
+                        <option value="" disabled selected> Select Entry</option>
+                        <option th:each="entryName : ${entryNames}"
+                                th:value="${entryName}" th:text="${entryName}"></option>
+                    </select>
+
+                    <select  class="browser-default custom-select mb-4 schedulestatus" name="scheduleStatus">
+                        <option value="" disabled selected> Select Schedule Status</option>
+                        <option th:each="scheduleStatus : ${T(com.edu.miusched.domain.ScheduleStatus).values()}"
+                                th:value="${scheduleStatus}" th:text="${scheduleStatus}"></option>
+                    </select>
+
+                    <select  class="browser-default custom-select mb-4 blocklist" name="blocks">
+                        <option value="" disabled selected> Select Blocks</option>
+                        <option th:each="block : ${blocks}"
+                                th:value="${block}" th:text="${block.blockName}"></option>
+                    </select>
+
+<!--                    <input type="text" id="block1" class="form-control mb-4 schedulestatus" th:field="*{status}" placeholder="Schedule Status">-->
+<!--                    <input type="number" min="0" id="fpp1" class="form-control mb-4 numblocks" th:field="*{FPPNum}"placeholder="FPP Num">-->
+<!--                    <input type="number" min="0" id="mpp1" class="form-control mb-4 mppnum" th:field="*{MPPNum}" placeholder="MPP Num">-->
+<!--                    <input type="date" id="start1" class="form-control mb-4 startdate" th:field="*{startDate}" placeholder="Start Date">-->
+<!--                    <input type="date" id="end1" class="form-control mb-4 enddate" th:field="*{endDate}" placeholder="End Date">-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--Modal end-->
+
+<!--  ================                                         -->
+<div class="modal fade" id="updatexampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel"> Update Schedule</h5>
+                <button type="button" class="cancel" data-dismiss="modal" aria-label="Cancel">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="text-center" style="color: #757575;" action="#" th:action="@{/admin/schedule/updateschedule}"
+                  th:object="${schedule1}" method="post">
+
+                <input  class = "scheduleid" type="hidden"   th:field="*{id}"/>
+                <div class="modal-body">
+
+                    <select  class="browser-default custom-select mb-4 entryname" name="entryName">
+                        <option value="" disabled selected> Select Entry</option>
+                        <option th:each="entryName : ${entryNames}"
+                                th:value="${entryName}" th:text="${entryName}"></option>
+                    </select>
+
+                    <select  class="browser-default custom-select mb-4 schedulestatus" name="scheduleStatus">
+                        <option value="" disabled selected> Select Schedule Status</option>
+                        <option th:each="scheduleStatus : ${T(com.edu.miusched.domain.ScheduleStatus).values()}"
+                                th:value="${scheduleStatus}" th:text="${scheduleStatus}"></option>
+                    </select>
+
+                    <select  class="browser-default custom-select mb-4 blocklist" name="blocks">
+                        <option value="" disabled selected> Select Blocks</option>
+                        <option th:each="block : ${blocks}"
+                                th:value="${block}" th:text="${block}"></option>
+                    </select>
+
+<!--                    &lt;!&ndash;                    <input type="text" id="entry2" class="form-control mb-4 entryname" placeholder="Entry Name" th:field="*{entryName}">&ndash;&gt;-->
+<!--                    <input type="text" id="block2" class="form-control mb-4 blockname" placeholder="Block Name" th:field="*{blockName}">-->
+<!--                    <input type="number" min="0" id="fpp2" class="form-control mb-4 fppnum" placeholder="FPP Number" th:field="*{FPPNum}">-->
+<!--                    <input type="number" min="0" id="mpp2" class="form-control mb-4 mppnum" placeholder="MPP Number" th:field="*{MPPNum}">-->
+<!--                    <input type="date" id="start2" class="form-control mb-4 startdate" placeholder="Start Date"th:field="*{startDate}" >-->
+<!--                    <input type="date" id="end2" class="form-control mb-4 enddate" placeholder="End Date" th:field="*{endDate}" >-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Update Schedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Modal end-->
+
+<!-- Modal -->
+<div class="modal fade" id="addBExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addb">Add New Block</h5>
+                <button type="button" class="cancel" data-dismiss="modal" aria-label="Cancel">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#" th:action="@{/admin/schedule/addblock}" th:object="${block1}" method="post">
+                <input type="hidden" th:field="*{id}">
+                <div class="modal-body">
+                    <select  class="browser-default custom-select mb-4 entryname" name="entryName">
+                        <option value="" disabled selected> Select Entry</option>
+                        <option th:each="entryName : ${entryNames}"
+                                th:value="${entryName}" th:text="${entryName}"></option>
+                    </select>
+                    <!--                    <input type="text" id="entry1" class="form-control mb-4 entryname" th:field="*{entryName}" placeholder="Entry Name">-->
+                    <input type="text" id="block1" class="form-control mb-4 blockname" th:field="*{blockName}" placeholder="Block Name">
+                    <input type="number" min="0" id="fpp1" class="form-control mb-4 fppnum" th:field="*{FPPNum}"placeholder="FPP Num">
+                    <input type="number" min="0" id="mpp1" class="form-control mb-4 mppnum" th:field="*{MPPNum}" placeholder="MPP Num">
+                    <input type="date" id="start1" class="form-control mb-4 startdate" th:field="*{startDate}" placeholder="Start Date">
+                    <input type="date" id="end1" class="form-control mb-4 enddate" th:field="*{endDate}" placeholder="End Date">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save Block</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<!--  ================                                         -->
+<div class="modal fade" id="addexampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel"> Add Block to Schedule</h5>
+                <button type="button" class="cancel" data-dismiss="modal" aria-label="Cancel">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+<!--&lt;!&ndash;            th:action="@{'/admin/schedule/addblock/' + ${scheduleID}}"&ndash;&gt;-->
+<!--            <form id="AddBlock" class="text-center" style="color: #757575;" action="#" th:action="@{'/admin/schedule/addblock/' + ${scheduleID}}"-->
+<!--                  th:object="${block1}" method="post">-->
+<!--            <form class="text-center" style="color: #757575;" action="#" th:action="@{'/admin/schedule/addblock/' + ${schedule.id}}"-->
+<!--                  th:object="${block1}" method="post">-->
+<!--            <form class="text-center" style="color: #757575;" action="#" th:action="@{'/admin/schedule/addblock/' + schedule.id}"-->
+<!--                  th:object="${block1}" method="post">-->
+            <form class="text-center" style="color: #757575;" action="#" th:action="@{/admin/schedule/addblock/1}"
+                  th:object="${block1}" method="post">
+<!--                objectHolder.setId(1)-->
+
+                <input  class = "scheduleid" type="hidden"   th:field="*{id}"/>
+                <div class="modal-body">
+
+                    <select  class="browser-default custom-select mb-4 entryname" name="entryName">
+                        <option value="" disabled selected> Select Entry</option>
+                        <option th:each="entryName : ${entryNames}"
+                                th:value="${entryName}" th:text="${entryName}"></option>
+                    </select>
+
+                    <select  class="browser-default custom-select mb-4 schedulestatus" name="scheduleStatus">
+                        <option value="" disabled selected> Select Schedule Status</option>
+                        <option th:each="scheduleStatus : ${T(com.edu.miusched.domain.ScheduleStatus).values()}"
+                                th:value="${scheduleStatus}" th:text="${scheduleStatus}"></option>
+                    </select>
+
+                    <select  class="browser-default custom-select mb-4 blocklist" name="blocks">
+                        <option value="" disabled selected> Select Blocks</option>
+                        <option th:each="block : ${blocks}"
+                                th:value="${block}" th:text="${block.blockName}"></option>
+                    </select>
+
+                    <!--                    &lt;!&ndash;                    <input type="text" id="entry2" class="form-control mb-4 entryname" placeholder="Entry Name" th:field="*{entryName}">&ndash;&gt;-->
+                    <!--                    <input type="text" id="block2" class="form-control mb-4 blockname" placeholder="Block Name" th:field="*{blockName}">-->
+                    <!--                    <input type="number" min="0" id="fpp2" class="form-control mb-4 fppnum" placeholder="FPP Number" th:field="*{FPPNum}">-->
+                    <!--                    <input type="number" min="0" id="mpp2" class="form-control mb-4 mppnum" placeholder="MPP Number" th:field="*{MPPNum}">-->
+                    <!--                    <input type="date" id="start2" class="form-control mb-4 startdate" placeholder="Start Date"th:field="*{startDate}" >-->
+                    <!--                    <input type="date" id="end2" class="form-control mb-4 enddate" placeholder="End Date" th:field="*{endDate}" >-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Add Block</button>
+<!--                    <button type="submit" th: formaction="/admin/schedule/addblock/2" class="btn btn-success">Add Block</button>-->
+<!--                    <input type="submit" value="submit to b" formaction="/submit/b">-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Modal end-->
+
+<!--   Core JS Files   -->
+<script src="/js/jquery.min.js"></script>
+<!--<script src="../assets/js/core/popper.min.js"></script>-->
+<script src="/js/material-dashboard.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+    $(document).ready(function() {
+
+        $('#updatexampleModal').on('show.bs.modal', function (e) {
+
+            var _button = $(e.relatedTarget); // Button that triggered the modal
+            var _row = _button.parents("tr");
+
+            var _scheduleid = _row.find(".scheduleid").text();
+            var _entryname = _row.find(".entryname").text();
+            var _schedulestatus = _row.find(".schedulestatus").text();
+            // var _fppnum = _row.find(".fppnum").text();
+            // var _mppnum = _row.find(".mppnum").text();
+            // var _startdate = _row.find(".startdate").text();
+            // var _enddate = _row.find(".enddate").text();
+
+            $(this).find(".scheduleid").val(_scheduleid);
+            $(this).find(".entryname").val(_entryname);
+            $(this).find(".schedulestatus").val(_schedulestatus);
+            // $(this).find(".fppnum").val(_fppnum);
+            // $(this).find(".mppnum").val(_mppnum);
+            // $(this).find(".startdate").val(_startdate);
+            // $(this).find(".enddate").val(_enddate);
+        });
+    });
+</script>
+
+<script>
+    var start1 = document.getElementById('start1');
+    var end1 = document.getElementById('end1');
+    var start2 = document.getElementById('start2');
+    var end2 = document.getElementById('end2');
+
+    start1.addEventListener('change', function() {
+        if (start1.value)
+            end1.min = start1.value;
+    }, false);
+
+    end1.addEventListener('change', function() {
+        if (end1.value)
+            start1.max = end1.value;
+    }, false);
+
+    start2.addEventListener('change', function() {
+        if (start2.value)
+            end2.min = start2.value;
+    }, false);
+
+    end2.addEventListener('change', function() {
+        if (end2.value)
+            start2.max = end2.value;
+    }, false);
+</script>
+
+</body>
+
+</html>
